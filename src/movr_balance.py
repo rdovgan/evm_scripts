@@ -9,10 +9,10 @@ provider_rpc = {
 web3 = Web3(Web3.HTTPProvider(provider_rpc["development"]))  # Change to correct network
 
 address_moon = resources.config.ADDRESS_MOON
-address_figa = resources.config.ADDRESS_MAIN
+address_main = resources.config.ADDRESS_MAIN
 
-balance_from = web3.fromWei(web3.eth.getBalance(address_moon), "ether")
-balance_to = web3.fromWei(web3.eth.getBalance(address_figa), "ether")
+balance_moon = web3.fromWei(web3.eth.getBalance(address_moon), "ether")
+balance_main = web3.fromWei(web3.eth.getBalance(address_main), "ether")
 
-print(f"The balance of {address_moon} is: {balance_from} MOVR")
-print(f"The balance of {address_figa} is: {balance_to} MOVR")
+print(f"The balance of {address_moon} is: {balance_moon} MOVR")
+print(f"The balance of {address_main} is: {balance_main} MOVR")
