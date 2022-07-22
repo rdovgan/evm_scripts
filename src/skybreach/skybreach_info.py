@@ -1,6 +1,6 @@
 from web3 import Web3
 
-import resources.config
+import resources.variables
 import coordinates
 import rmrk_token
 
@@ -10,13 +10,13 @@ providerRpc = {
 }
 web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))  # Change to correct network
 
-contract_skybreach = resources.config.CONTRACT_ADDRESS_SKYBREACH
+contract_skybreach = resources.variables.CONTRACT_ADDRESS_SKYBREACH
 
 with open('../abi/skybreach-abi.json', 'r') as file:
     abi_skybreach = file.read().replace('\n', '')
 
-address_moon = resources.config.ADDRESS_MOON
-address_main = resources.config.ADDRESS_MAIN
+address_moon = resources.variables.ADDRESS_MOON
+address_main = resources.variables.ADDRESS_MAIN
 
 
 def print_balance():

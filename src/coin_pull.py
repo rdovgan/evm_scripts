@@ -1,5 +1,5 @@
 from requests import Request, Session
-import resources.config as config
+import resources.variables as config
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 

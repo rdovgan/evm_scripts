@@ -1,6 +1,6 @@
 from substrateinterface.base import SubstrateInterface
 
-import resources.config
+import resources.variables
 
 substrate = SubstrateInterface(
     url="wss://kusama-rpc.polkadot.io/",
@@ -9,7 +9,8 @@ substrate = SubstrateInterface(
 )
 
 # Set block_hash to None for chaintip
-block_hash = resources.config.SUBSTRATE_BLOCH_HASH
+block_hash = resources.variables.SUBSTRATE_BLOCH_HASH
+
 
 def check_block():
     # Retrieve extrinsics in block

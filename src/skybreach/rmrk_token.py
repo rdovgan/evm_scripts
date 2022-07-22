@@ -1,6 +1,6 @@
 from web3 import Web3
 
-import resources.config
+import resources.variables
 
 providerRpc = {
     "development": "https://rpc.api.moonriver.moonbeam.network/",
@@ -11,7 +11,7 @@ web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))  # Change to correct 
 with open('../abi/rmrk-abi.json', 'r') as file:
     abiRmrk = file.read().replace('\n', '')
 
-contract_address = resources.config.CONTRACT_ADDRESS_RMRK
+contract_address = resources.variables.CONTRACT_ADDRESS_RMRK
 
 contract_rmrk_component = web3.eth.contract(address=Web3.toChecksumAddress(contract_address), abi=abiRmrk)
 
