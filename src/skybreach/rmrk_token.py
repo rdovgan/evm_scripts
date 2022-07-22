@@ -8,7 +8,7 @@ providerRpc = {
 }
 web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))  # Change to correct network
 
-with open('abi/rmrk-abi.json', 'r') as file:
+with open('../abi/rmrk-abi.json', 'r') as file:
     abiRmrk = file.read().replace('\n', '')
 
 contract_address = resources.config.CONTRACT_ADDRESS_RMRK

@@ -9,18 +9,21 @@ providerRpc = {
 }
 web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))  # Change to correct network
 
-with open('abi/skybreach-abi.json', 'r') as file:
+with open('../abi/skybreach-abi.json', 'r') as file:
     abi_skybreach = file.read().replace('\n', '')
 
 address_moon = resources.config.ADDRESS_MOON
 address_main = resources.config.ADDRESS_MAIN
 
-balance_moon_movr = web3.fromWei(web3.eth.getBalance(address_moon), "ether")
 
-balance_moon_rmrk = rmrk_token.get_balance(address_moon)
+def print_balance():
+    balance_moon_movr = web3.fromWei(web3.eth.getBalance(address_moon), "ether")
+    balance_moon_rmrk = rmrk_token.get_balance(address_moon)
+    print(f"The balance of {address_moon} is: {balance_moon_movr} MOVR")
+    print(f"The balance of {address_moon} is: {balance_moon_rmrk} {rmrk_token.get_symbol()}")
 
-print(f"The balance of {address_moon} is: {balance_moon_movr} MOVR")
-print(f"The balance of {address_moon} is: {balance_moon_rmrk} {rmrk_token.get_symbol()}")
+
+print_balance()
 
 contract_skybreach = resources.config.CONTRACT_ADDRESS_SKYBREACH
 
