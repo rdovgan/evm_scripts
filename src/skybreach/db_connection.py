@@ -85,5 +85,4 @@ def read_all():
             print("MySQL connection is closed")
 
 
-insert_records([(1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (2, 43, 234, 321, 32, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)])
-read_all()
+#read_all()

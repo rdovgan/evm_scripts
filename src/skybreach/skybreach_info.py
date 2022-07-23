@@ -29,8 +29,8 @@ def print_balance():
 def call_contract():
     print(f'Making a call to contract at address: {contract_skybreach}')
     contract_skybreach_component = web3.eth.contract(address=Web3.toChecksumAddress(contract_skybreach), abi=abi_skybreach)
-    dutch_duration = contract_skybreach_component.functions.getCreatorFee().call()
-    print(f'Dutch Duration: {dutch_duration} ')
+    creator_fee = contract_skybreach_component.functions.getCreatorFee().call()
+    print(f'Creator fee: {creator_fee} ')
 
 
 def get_land_info(land_id: int):
