@@ -23,7 +23,7 @@ class Entropy(enum.Enum):
 
 class LandInfo:
 
-    def __init__(self, land_id, land_data):
+    def __init__(self, land_id, *land_data):
         self.land_id = land_id
         self.x = coordinates.convert_to_coordinates(land_id)[0]
         self.y = coordinates.convert_to_coordinates(land_id)[1]
