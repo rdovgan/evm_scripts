@@ -3,6 +3,7 @@ from web3 import Web3
 import resources.variables
 import coordinates
 import db_connection
+from src.skybreach.land_info_dto import LandInfo
 
 providerRpc = {
     "development": "https://rpc.api.moonriver.moonbeam.network/",
@@ -25,17 +26,18 @@ def get_land_info(land_id: int):
 
 
 def process_job():
-    lands_to_insert = []
     for x in range(1, 255):
+        lands_to_insert = []
         for y in range(1, 255):
             try:
-                land_info = get_land_info(coordinates.convert_to_id(x, y))
+                land_id = coordinates.convert_to_id(x, y)
+                land_info = get_land_info(land_id)
                 if land_info[13] > 0:
-                    lands_to_insert.append(land_info)
+                    lands_to_insert.append(LandInfo(land_id, land_info))
             except Exception as error:
                 print(error)
-    print(f'Total lands retrieved : {len(lands_to_insert)}')
-    db_connection.insert_records(lands_to_insert)
+        print(f'Lands retrieved for {x} row: {len(lands_to_insert)}')
+        db_connection.insert_records(lands_to_insert)
 
 
 process_job()
