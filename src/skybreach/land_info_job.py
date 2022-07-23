@@ -26,18 +26,18 @@ def get_land_info(land_id: int):
 
 
 def process_job():
-    for x in range(1, 255):
+    for x in range(3, 255):
         lands_to_insert = []
         for y in range(1, 255):
             try:
                 land_id = coordinates.convert_to_id(x, y)
                 land_info = get_land_info(land_id)
                 if land_info[13] > 0:
-                    lands_to_insert.append(LandInfo(land_id, land_info))
+                    lands_to_insert.append(LandInfo(land_id, *land_info).to_array())
             except Exception as error:
                 print(error)
-        print(f'Lands retrieved for {x} row: {len(lands_to_insert)}')
-        db_connection.insert_records(lands_to_insert)
-
+        if len(lands_to_insert) > 0:
+            print(f'Lands retrieved for {x} column: {len(lands_to_insert)}')
+            db_connection.insert_records(lands_to_insert)
 
 process_job()

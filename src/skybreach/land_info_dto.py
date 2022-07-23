@@ -42,3 +42,7 @@ class LandInfo:
         self.isMountainFoot = land_data[12]
         self.rarity = land_data[13]
         self.entropy = land_data[14]
+
+    def to_array(self):
+        return self.land_id, self.x, self.y, self.cyber, self.steampunk, self.wind, self.volcano, self.fire, self.water, self.necro, self.mecha, self.dragon, \
+               self.meadow, self.isShore, self.isIsland, self.isMountainFoot, self.rarity, self.entropy
