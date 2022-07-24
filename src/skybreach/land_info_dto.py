@@ -4,21 +4,21 @@ import enum
 
 class Rarity(enum.Enum):
     NONE = 0
-    Common = 1
-    Rare = 2
-    Epic = 3
-    Harb = 4
-    Premium = 5
+    Common = 1 #16000
+    Rare = 2 #5000
+    Epic = 3 #1000
+    Harb = 4 #2500
+    Premium = 5 #500
 
 
 class Entropy(enum.Enum):
     NONE = 0
-    Seldom = 1
-    Infrequent = 2
-    Uncommon = 3
-    Common = 4
-    Frequent = 5
-    Constant = 6
+    Seldom = 1 #7962
+    Infrequent = 2 #6891
+    Uncommon = 3 #4511
+    Common = 4 #2201
+    Frequent = 5 #2201
+    Constant = 6 #2500
 
 
 class LandInfo:
