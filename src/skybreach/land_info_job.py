@@ -18,21 +18,23 @@ with open('../abi/skybreach-abi.json', 'r') as file:
 
 
 def get_land_info(land_id: int):
-    print(f'Making a call to get land info: {coordinates.convert_to_coordinates(land_id)}')
     contract_skybreach_component = web3.eth.contract(address=Web3.toChecksumAddress(contract_skybreach), abi=abi_skybreach)
     land_info = contract_skybreach_component.functions.getPlotData(land_id).call()
-    print(f'Land info: {land_info}')
     return land_info
 
 
 def process_job():
-    for x in range(3, 255):
+    land_ids_from_db = [land_from_db[0] for land_from_db in db_connection.read_all()]
+    for x in range(50, 256):
         lands_to_insert = []
-        for y in range(1, 255):
+        for y in range(1, 256):
             try:
                 land_id = coordinates.convert_to_id(x, y)
+                if land_id in land_ids_from_db:
+                    continue
                 land_info = get_land_info(land_id)
                 if land_info[13] > 0:
+                    print(f'Land info: {land_info}')
                     lands_to_insert.append(LandInfo(land_id, *land_info).to_array())
             except Exception as error:
                 print(error)
