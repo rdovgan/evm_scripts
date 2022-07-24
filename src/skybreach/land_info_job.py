@@ -40,4 +40,5 @@ def process_job():
             print(f'Lands retrieved for {x} column: {len(lands_to_insert)}')
             db_connection.insert_records(lands_to_insert)
 
+
 process_job()
