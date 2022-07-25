@@ -48,3 +48,7 @@ def get_lands_by_address(address: str):
     print(f'Making a call to get lands by address {address}')
     return contract_skybreach_component.functions.getOwnerPlots(address).call()
 
+
+def get_resources_by_id(land_id: int):
+    print(f'Making a call to get resources by land {land_id}')
+    return contract_skybreach_component.functions.getPlotResource(land_id).call()
