@@ -39,6 +39,11 @@ def get_land_info(land_id: int):
     print(f'Land info: {land_info} ')
 
 
+def get_land_types_by_address(address: str):
+    print(f'Making a call to get lands by address {address}')
+    return contract_skybreach_component.functions.getOwnedPlotRarities(address).call()
+
+
 def get_lands_by_address(address: str):
     print(f'Making a call to get lands by address {address}')
     return contract_skybreach_component.functions.getOwnerPlots(address).call()
