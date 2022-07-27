@@ -78,4 +78,11 @@ def process_othala_job():
     print(othala_data_response.text)
 
 
+def process_gift_job():
+    link = "https://skybreach.app/api/love"
+    gift_data_response = requests.get(link)
+    print(gift_data_response.text)
+
+
 process_othala_job()
+process_gift_job()
