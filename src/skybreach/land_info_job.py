@@ -1,6 +1,7 @@
 from web3 import Web3
 
 import requests
+import json
 import resources.variables
 import coordinates
 import db_connection
@@ -69,19 +70,23 @@ def process_land_to_owner_import_job():
         db_connection.insert_land_to_owner_records(land_to_owner_list)
 
 
-process_land_to_owner_import_job()
+#process_land_to_owner_import_job()
 
 
 def process_othala_job():
     link = "https://skybreach.app/api/oth"
     othala_data_response = requests.get(link)
-    print(othala_data_response.text)
+    for element in json.loads(othala_data_response.text):
+        print(element['id'])
+        print(element['owner'])
 
 
 def process_gift_job():
     link = "https://skybreach.app/api/love"
     gift_data_response = requests.get(link)
-    print(gift_data_response.text)
+    for element in json.loads(gift_data_response.text):
+        print(element['id'])
+        print(element['owner'])
 
 
 process_othala_job()
