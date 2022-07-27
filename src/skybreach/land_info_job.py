@@ -1,5 +1,6 @@
 from web3 import Web3
 
+import requests
 import resources.variables
 import coordinates
 import db_connection
@@ -43,4 +44,11 @@ def process_job():
             db_connection.insert_records(lands_to_insert)
 
 
-process_job()
+def process_othala_job():
+    link = "https://skybreach.app/api/oth"
+    othala_data_response = requests.get(link)
+    print(othala_data_response.text)
+
+
+
+process_othala_job()
