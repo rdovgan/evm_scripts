@@ -1,6 +1,6 @@
 from web3 import Web3
 
-import numpy as np
+import requests
 import resources.variables
 import coordinates
 import db_connection
@@ -70,3 +70,12 @@ def process_land_to_owner_import_job():
 
 
 process_land_to_owner_import_job()
+
+
+def process_othala_job():
+    link = "https://skybreach.app/api/oth"
+    othala_data_response = requests.get(link)
+    print(othala_data_response.text)
+
+
+process_othala_job()
