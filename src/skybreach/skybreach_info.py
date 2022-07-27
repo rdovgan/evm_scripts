@@ -22,8 +22,8 @@ contract_skybreach_component = web3.eth.contract(address=Web3.toChecksumAddress(
 
 def print_balance():
     balance_moon_movr = web3.fromWei(web3.eth.getBalance(address_moon), "ether")
-    balance_moon_rmrk = rmrk_token.get_balance(address_moon)
     print(f"The balance of {address_moon} is: {balance_moon_movr} MOVR")
+    balance_moon_rmrk = rmrk_token.get_balance(address_moon)
     print(f"The balance of {address_moon} is: {balance_moon_rmrk} {rmrk_token.get_symbol()}")
 
 
@@ -52,3 +52,8 @@ def get_lands_by_address(address: str):
 def get_resources_by_id(land_id: int):
     print(f'Making a call to get resources by land {land_id}')
     return contract_skybreach_component.functions.getPlotResource(land_id).call()
+
+
+def get_bought_lands():
+    return []
+
