@@ -88,10 +88,11 @@ def process_othala_job():
 def process_gift_job():
     link = "https://skybreach.app/api/love"
     gift_data_response = requests.get(link)
+    gift_data = []
     for element in json.loads(gift_data_response.text):
-        print(element['id'])
-        print(element['owner'])
+        gift_data.append((element['id'], element['owner'], AttributeType.Gift, 1))
+    db_connection.insert_land_attribute_records(gift_data)
 
 
-process_othala_job()
-# process_gift_job()
+# process_othala_job()
+process_gift_job()
