@@ -1,7 +1,8 @@
 import requests
 import json
-import coordinates
 import db_connection
+
+from service import coordinates_utils
 from land_info_job_utils import get_land_info
 from land_info_job_utils import get_plots_owners
 from land_info_job_utils import split_array
@@ -17,7 +18,7 @@ def process_land_import_job():
         lands_to_insert = []
         for y in range(1, 256):
             try:
-                land_id = coordinates.convert_to_id(x, y)
+                land_id = coordinates_utils.convert_to_id(x, y)
                 if land_id in land_ids_from_db:
                     continue
                 land_info = get_land_info(land_id)

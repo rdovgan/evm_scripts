@@ -10,7 +10,7 @@ providerRpc = {
 }
 web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))  # Change to correct network
 
-with open('../abi/skybreach-abi.json', 'r') as file:
+with open('../../abi/skybreach-abi.json', 'r') as file:
     abi_skybreach = file.read().replace('\n', '')
 
 address_moon = resources.variables.ADDRESS_MOON
