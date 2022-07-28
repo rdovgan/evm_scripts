@@ -1,8 +1,8 @@
 from web3 import Web3
 
 import resources.variables
-import coordinates
-import rmrk_token
+import coordinates_utils
+from src.skybreach import rmrk_token
 
 providerRpc = {
     "development": "https://rpc.api.moonriver.moonbeam.network/",
@@ -34,7 +34,7 @@ def call_contract_test():
 
 
 def get_land_info(land_id: int):
-    print(f'Making a call to get land info: {coordinates.convert_to_coordinates(land_id)}')
+    print(f'Making a call to get land info: {coordinates_utils.convert_to_coordinates(land_id)}')
     land_info = contract_skybreach_component.functions.getPlotData(land_id).call()
     print(f'Land info: {land_info} ')
 
