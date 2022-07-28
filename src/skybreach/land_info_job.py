@@ -6,6 +6,7 @@ import resources.variables
 import coordinates
 import db_connection
 from src.skybreach.land_info_dto import LandInfo
+from src.skybreach.land_info_dto import AttributeType
 
 providerRpc = {
     "development": "https://rpc.api.moonriver.moonbeam.network/",
@@ -26,9 +27,10 @@ def get_land_info(land_id: int):
     return land_info
 
 
+# Job to generate coordinates from (1,1) to (255,255) and retrieve data from blockchain and store to DB
 def process_land_import_job():
     land_ids_from_db = [land_from_db[0] for land_from_db in db_connection.read_all()]
-    for x in range(50, 256):
+    for x in range(1, 256):
         lands_to_insert = []
         for y in range(1, 256):
             try:
@@ -49,7 +51,7 @@ def process_land_import_job():
 def split_array(array, size: int):
     chunks = []
     for i in range(0, len(array), size):
-        chunks.append(array[i:i+size])
+        chunks.append(array[i:i + size])
     return chunks
 
 
@@ -61,6 +63,7 @@ def define_land_to_owner_list(lands, owners):
     return land_to_owner_list
 
 
+# Process job to retrieve lands owners and update connection in DB
 def process_land_to_owner_import_job():
     land_ids_from_db = [land_from_db[0] for land_from_db in db_connection.read_all()]
     splits = split_array(land_ids_from_db, 250)
@@ -70,15 +73,16 @@ def process_land_to_owner_import_job():
         db_connection.insert_land_to_owner_records(land_to_owner_list)
 
 
-#process_land_to_owner_import_job()
+# process_land_to_owner_import_job()
 
 
 def process_othala_job():
     link = "https://skybreach.app/api/oth"
     othala_data_response = requests.get(link)
+    othala_data = []
     for element in json.loads(othala_data_response.text):
-        print(element['id'])
-        print(element['owner'])
+        othala_data.append((element['id'], element['owner'], AttributeType.Othala, 1))
+    db_connection.insert_land_attribute_records(othala_data)
 
 
 def process_gift_job():
@@ -90,4 +94,4 @@ def process_gift_job():
 
 
 process_othala_job()
-process_gift_job()
+# process_gift_job()
