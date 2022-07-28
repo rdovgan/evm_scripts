@@ -1,30 +1,13 @@
-from web3 import Web3
-
 import requests
 import json
-import resources.variables
 import coordinates
 import db_connection
+from land_info_job_utils import get_land_info
+from land_info_job_utils import get_plots_owners
+from land_info_job_utils import split_array
+from land_info_job_utils import define_land_to_owner_list
 from src.skybreach.land_info_dto import LandInfo
 from src.skybreach.land_info_dto import AttributeType
-
-providerRpc = {
-    "development": "https://rpc.api.moonriver.moonbeam.network/",
-    "alphanet": "https://rpc.api.moonbase.moonbeam.network",
-}
-web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))
-
-contract_skybreach = resources.variables.CONTRACT_ADDRESS_SKYBREACH
-
-with open('../abi/skybreach-abi.json', 'r') as file:
-    abi_skybreach = file.read().replace('\n', '')
-
-contract_skybreach_component = web3.eth.contract(address=Web3.toChecksumAddress(contract_skybreach), abi=abi_skybreach)
-
-
-def get_land_info(land_id: int):
-    land_info = contract_skybreach_component.functions.getPlotData(land_id).call()
-    return land_info
 
 
 # Job to generate coordinates from (1,1) to (255,255) and retrieve data from blockchain and store to DB
@@ -48,34 +31,17 @@ def process_land_import_job():
             db_connection.insert_land_records(lands_to_insert)
 
 
-def split_array(array, size: int):
-    chunks = []
-    for i in range(0, len(array), size):
-        chunks.append(array[i:i + size])
-    return chunks
-
-
-def define_land_to_owner_list(lands, owners):
-    land_to_owner_list = []
-    size = min(len(lands), len(owners))
-    for i in range(0, size):
-        land_to_owner_list.append((lands[i], owners[i], None))
-    return land_to_owner_list
-
-
-# Process job to retrieve lands owners and update connection in DB
+# Process job to retrieve lands owners and update connections in DB
 def process_land_to_owner_import_job():
     land_ids_from_db = [land_from_db[0] for land_from_db in db_connection.read_all()]
     splits = split_array(land_ids_from_db, 250)
     for land_split in splits:
-        owner_list = contract_skybreach_component.functions.getPlotOwners(land_split).call()
+        owner_list = get_plots_owners(land_split)
         land_to_owner_list = define_land_to_owner_list(land_split, owner_list)
         db_connection.insert_land_to_owner_records(land_to_owner_list)
 
 
-# process_land_to_owner_import_job()
-
-
+# Retrieve Othala Chunkies owners from direct endpoint and store to land_attribute table with type `Othala`
 def process_othala_job():
     link = "https://skybreach.app/api/oth"
     othala_data_response = requests.get(link)
@@ -85,6 +51,7 @@ def process_othala_job():
     db_connection.insert_land_attribute_records(othala_data)
 
 
+# Retrieve Gift owners from direct endpoint and store to land_attribute table with type `Gift`
 def process_gift_job():
     link = "https://skybreach.app/api/love"
     gift_data_response = requests.get(link)
@@ -93,6 +60,7 @@ def process_gift_job():
         gift_data.append((element['id'], element['owner'], AttributeType.Gift, 1))
     db_connection.insert_land_attribute_records(gift_data)
 
-
+# process_land_import_job()
+# process_land_to_owner_import_job()
 # process_othala_job()
-process_gift_job()
+# process_gift_job()
