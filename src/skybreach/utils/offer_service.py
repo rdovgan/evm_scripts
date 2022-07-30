@@ -1,3 +1,6 @@
+from web3 import Web3
+from web3.gas_strategies.rpc import rpc_gas_price_strategy
+from src.skybreach.land_info_dto import Rarity
 import resources.variables as variables
 from src.skybreach.land_info_dto import Rarity
 
@@ -23,5 +26,9 @@ def convert_land_to_owner_to_land_ids(land_to_owners):
     return list(map(lambda land_to_owner: land_to_owner[1], land_to_owners))
 
 
-def define_object_to_make_offer():
-    print('init object')
+def define_land_to_owners_to_buy():
+    land_to_owners_without_offers = db.read_all_land_to_owner_without_offer()
+    land_to_owners_skipped_wallets = skip_lands_in_wallets(land_to_owners_without_offers)
+    land_info_records = db.read_all_land_info_by_ids(convert_land_to_owner_to_land_ids(land_to_owners_skipped_wallets))
+    land_to_owners_filtered_land_types = skip_land_types(land_to_owners_skipped_wallets, land_info_records)
+    return land_to_owners_filtered_land_types

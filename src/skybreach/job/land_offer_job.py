@@ -3,10 +3,7 @@ import src.skybreach.db_connection as db
 
 
 def process_job_to_make_offers():
-    land_to_owners_without_offers = db.read_all_land_to_owner_without_offer()
-    land_to_owners_skipped_wallets = service.skip_lands_in_wallets(land_to_owners_without_offers)
-    land_info_records = db.read_all_land_info_by_ids(service.convert_land_to_owner_to_land_ids(land_to_owners_skipped_wallets))
-    land_to_owners_filtered_land_types = service.skip_land_types(land_to_owners_skipped_wallets, land_info_records)
+    land_to_owners_filtered_land_types = service.define_land_to_owners_to_buy()
 
     land_to_owners_to_update = []
     try:
