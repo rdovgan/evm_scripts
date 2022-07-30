@@ -1,4 +1,5 @@
 from web3 import Web3
+from pathlib import Path
 
 import resources.variables
 
@@ -12,7 +13,7 @@ web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))
 contract_skybreach = resources.variables.CONTRACT_ADDRESS_SKYBREACH
 
 # Read ABI structure to understand smart contract
-with open('../../abi/skybreach-abi.json', 'r') as file:
+with open(Path(__file__).parent / '../abi/skybreach-abi.json', 'r') as file:
     abi_skybreach = file.read().replace('\n', '')
 
 # Initialise Smart contract component

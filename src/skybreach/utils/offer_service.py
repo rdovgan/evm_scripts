@@ -1,15 +1,19 @@
+from pathlib import Path
+
 from web3 import Web3
 from web3.gas_strategies.rpc import rpc_gas_price_strategy
-from src.skybreach.land_info_dto import Rarity
+
 import resources.variables as variables
 import src.skybreach.db_connection as db
+from src.skybreach.land_info_dto import Rarity
+from src.skybreach.rmrk_token import token_decimals
 
 providerRpc = {
     "development": "https://rpc.api.moonriver.moonbeam.network/",
     "alphanet": "https://rpc.api.moonbase.moonbeam.network",
 }
 # Connect to RPC
-web3 = Web3(Web3.HTTPProvider(providerRpc["alphanet"]))
+web3 = Web3(Web3.HTTPProvider(providerRpc["development"]))
 
 account_executor = {
     "private_key": variables.PRIVATE_KEY_GINGER,
@@ -21,7 +25,7 @@ web3.eth.set_gas_price_strategy(rpc_gas_price_strategy)
 contract_skybreach = variables.CONTRACT_ADDRESS_SKYBREACH
 
 # Read ABI structure to understand smart contract
-with open('../../abi/skybreach-abi.json', 'r') as file:
+with open(Path(__file__).parent / '../../abi/skybreach-abi.json', 'r') as file:
     abi_skybreach = file.read().replace('\n', '')
 
 # Initialise Smart contract component
@@ -29,13 +33,26 @@ contract_skybreach_component = web3.eth.contract(address=Web3.toChecksumAddress(
 
 
 def define_land_price(land_id: int):
-    price = 0.00022
-    return price
+    price = pow(10, token_decimals - 5) * 22
+    return int(price)
+
+
+def make_buy_offer(land_id: int):
+    buy_offer = contract_skybreach_component.functions.makeOffer(land_id, define_land_price(land_id)).buildTransaction(
+        {
+            'from': account_executor['address'],
+            'nonce': web3.eth.get_transaction_count(account_executor['address']),
+        }
+    )
+    tx_buy_offer = web3.eth.account.sign_transaction(buy_offer, account_executor['private_key'])
+    tx_hash = web3.eth.send_raw_transaction(tx_buy_offer.rawTransaction)
+    tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash)
+    return tx_receipt
 
 
 def skip_lands_in_wallets(land_to_owners):
     return [land_to_owner for land_to_owner in land_to_owners if
-            land_to_owner[2] not in [variables.ADDRESS_MOON, variables.ADDRESS_MAIN, variables.ADDRESS_POME]]
+            land_to_owner[2] not in [variables.ADDRESS_MOON, variables.ADDRESS_MAIN, variables.ADDRESS_POME, variables.ADDRESS_GINGER]]
 
 
 def skip_land_types(land_to_owners, land_info_records):
