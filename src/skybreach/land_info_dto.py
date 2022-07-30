@@ -1,4 +1,5 @@
 import enum
+from src.skybreach.utils.coordinates_utils import convert_to_coordinates
 
 
 class Rarity(enum.Enum):
@@ -29,8 +30,8 @@ class LandInfo:
 
     def __init__(self, land_id, *land_data):
         self.land_id = land_id
-        self.x = coordinates.convert_to_coordinates(land_id)[0]
-        self.y = coordinates.convert_to_coordinates(land_id)[1]
+        self.x = convert_to_coordinates(land_id)[0]
+        self.y = convert_to_coordinates(land_id)[1]
         self.cyber = land_data[0]
         self.steampunk = land_data[1]
         self.wind = land_data[2]
