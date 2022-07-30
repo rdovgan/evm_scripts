@@ -73,6 +73,10 @@ def read_all_land_info():
     return read_all('SELECT * FROM land_info')
 
 
+def read_all_land_info_by_ids(land_ids):
+    return read_all(f"""SELECT * FROM land_info WHERE id IN ({','.join(map(str, land_ids))})""")
+
+
 def insert_all_land_info(records_to_insert):
     insert_query = """INSERT INTO land_info (id, coord_x, coord_y, cyber, steampunk, 
             wind, volcano, fire, water, necro, mecha, dragon, meadow, 

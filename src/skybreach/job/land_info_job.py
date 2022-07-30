@@ -2,7 +2,7 @@ import requests
 import json
 
 from src.skybreach import db_connection
-from src.skybreach.service import coordinates_utils
+from src.skybreach.utils import coordinates_utils
 from land_info_job_utils import get_land_info
 from land_info_job_utils import get_plots_owners
 from land_info_job_utils import split_array
