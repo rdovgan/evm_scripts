@@ -2,7 +2,7 @@ import mysql.connector
 from configparser import ConfigParser
 
 
-def read_db_config(filename='../../resources/config.ini', section='mysql'):
+def read_db_config(filename='../../../resources/config.ini', section='mysql'):
     """ Read database configuration file and return a dictionary object
     :param filename: name of the configuration file
     :param section: section of database configuration
@@ -70,7 +70,7 @@ def read_all(query: str):
 
 
 def read_all_land_info():
-    return read_all('select * from land_info')
+    return read_all('SELECT * FROM land_info')
 
 
 def insert_all_land_info(records_to_insert):
@@ -89,7 +89,7 @@ def insert_all_land_to_owner(records_to_insert):
 
 
 def read_all_land_to_owner():
-    return read_all("select * from land_to_owner")
+    return read_all("SELECT * FROM land_to_owner")
 
 
 def insert_all_land_attribute(records_to_insert):
@@ -100,4 +100,8 @@ def insert_all_land_attribute(records_to_insert):
 
 
 def read_all_land_attribute():
-    read_all("select * from land_attribute")
+    read_all("SELECT * FROM land_attribute")
+
+
+def read_all_land_to_owner_without_offer():
+    return read_all("SELECT * FROM land_to_owner WHERE price IS NULL AND owner <> '0x0000000000000000000000000000000000000000'")
