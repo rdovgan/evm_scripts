@@ -2,7 +2,30 @@ from web3 import Web3
 from web3.gas_strategies.rpc import rpc_gas_price_strategy
 from src.skybreach.land_info_dto import Rarity
 import resources.variables as variables
-from src.skybreach.land_info_dto import Rarity
+import src.skybreach.db_connection as db
+
+providerRpc = {
+    "development": "https://rpc.api.moonriver.moonbeam.network/",
+    "alphanet": "https://rpc.api.moonbase.moonbeam.network",
+}
+# Connect to RPC
+web3 = Web3(Web3.HTTPProvider(providerRpc["alphanet"]))
+
+account_executor = {
+    "private_key": variables.PRIVATE_KEY_GINGER,
+    "address": variables.ADDRESS_GINGER,
+}
+
+web3.eth.set_gas_price_strategy(rpc_gas_price_strategy)
+
+contract_skybreach = variables.CONTRACT_ADDRESS_SKYBREACH
+
+# Read ABI structure to understand smart contract
+with open('../../abi/skybreach-abi.json', 'r') as file:
+    abi_skybreach = file.read().replace('\n', '')
+
+# Initialise Smart contract component
+contract_skybreach_component = web3.eth.contract(address=Web3.toChecksumAddress(contract_skybreach), abi=abi_skybreach)
 
 
 def define_land_price(land_id: int):
