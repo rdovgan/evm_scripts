@@ -86,9 +86,8 @@ def insert_all_land_info(records_to_insert):
 
 
 def insert_all_land_to_owner(records_to_insert):
-    insert_query = """INSERT INTO land_to_owner (land_id, owner, price) 
-        VALUES (%s, %s, %s) 
-        ON DUPLICATE KEY UPDATE update_date = CURRENT_TIMESTAMP()"""
+    insert_query = """REPLACE INTO land_to_owner (land_id, owner, price) 
+        VALUES (%s, %s, %s)"""
     insert_all(insert_query, records_to_insert)
 
 
