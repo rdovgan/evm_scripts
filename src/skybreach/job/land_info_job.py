@@ -61,7 +61,3 @@ def process_gift_job():
         gift_data.append((element['id'], element['owner'], AttributeType.Gift, 1))
     db_connection.insert_all_land_attribute(gift_data)
 
-# process_land_import_job()
-# process_land_to_owner_import_job()
-# process_othala_job()
-# process_gift_job()

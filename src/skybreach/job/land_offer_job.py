@@ -15,5 +15,3 @@ def process_job_to_make_offers():
         print(len(land_to_owners_to_update))
         db.insert_all_land_to_owner(land_to_owners_to_update)
 
-
-process_job_to_make_offers()
