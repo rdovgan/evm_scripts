@@ -72,3 +72,11 @@ def define_land_to_owners_to_buy():
     land_info_records = db.read_all_land_info_by_ids(convert_land_to_owner_to_land_ids(land_to_owners_skipped_wallets))
     land_to_owners_filtered_land_types = skip_land_types(land_to_owners_skipped_wallets, land_info_records)
     return land_to_owners_filtered_land_types
+
+
+def define_land_offers(land_id: int):
+    return contract_skybreach_component.functions.getOffers(land_id).call()
+
+
+def is_active_order(land_id):
+    return variables.ADDRESS_GINGER in list(map(lambda offer:  offer[0], define_land_offers(land_id)))
