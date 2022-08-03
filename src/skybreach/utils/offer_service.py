@@ -56,7 +56,7 @@ def skip_lands_in_wallets(land_to_owners):
 
 
 def skip_land_types(land_to_owners, land_info_records):
-    correct_lands = [land_info for land_info in land_info_records if land_info[13] not in [Rarity.Harb, Rarity.Premium]]
+    correct_lands = [land_info for land_info in land_info_records if land_info[13] not in [Rarity.Harb.value, Rarity.Premium.value]]
     correct_land_ids = list(map(lambda correct_land: correct_land[0], correct_lands))
     return [land_to_owner for land_to_owner in land_to_owners if
             land_to_owner[0] in correct_land_ids]

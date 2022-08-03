@@ -1,5 +1,3 @@
-from web3._utils.threads import Timeout
-
 import src.skybreach.utils.offer_service as service
 import src.skybreach.db_connection as db
 
@@ -12,9 +10,8 @@ def process_job_to_make_offers():
         for land_to_owner in land_to_owners_filtered_land_types:
             price = service.define_land_price(land_to_owner[0])
             try:
-                if service.is_active_order(land_to_owner[0]):
-                    continue
-                service.make_buy_offer(land_to_owner[0])
+                if not service.is_active_order(land_to_owner[0]):
+                    service.make_buy_offer(land_to_owner[0])
                 land_to_owners_to_update.append((land_to_owner[0], land_to_owner[1], price))
             except Exception as exception:
                 print(f'{exception} Timeout for land {land_to_owner[0]}')
