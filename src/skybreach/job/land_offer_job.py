@@ -15,10 +15,9 @@ def process_job_to_make_offers():
                 if service.is_active_order(land_to_owner[0]):
                     continue
                 service.make_buy_offer(land_to_owner[0])
+                land_to_owners_to_update.append((land_to_owner[0], land_to_owner[1], price))
             except Exception as exception:
                 print(f'{exception} Timeout for land {land_to_owner[0]}')
-            finally:
-                land_to_owners_to_update.append((land_to_owner[0], land_to_owner[1], price))
 
     finally:
         print(len(land_to_owners_to_update))
