@@ -48,7 +48,7 @@ def process_othala_job():
     othala_data_response = requests.get(link)
     othala_data = []
     for element in json.loads(othala_data_response.text):
-        othala_data.append((element['id'], element['owner'], AttributeType.Othala, 1))
+        othala_data.append((element[0], element[1], AttributeType.Othala.value, 1))
     db_connection.insert_all_land_attribute(othala_data)
 
 
@@ -58,6 +58,6 @@ def process_gift_job():
     gift_data_response = requests.get(link)
     gift_data = []
     for element in json.loads(gift_data_response.text):
-        gift_data.append((element['id'], element['owner'], AttributeType.Gift, 1))
+        gift_data.append((element[0], element[1], AttributeType.Gift.value, 1))
     db_connection.insert_all_land_attribute(gift_data)
 
