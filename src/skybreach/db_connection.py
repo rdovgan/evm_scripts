@@ -33,7 +33,7 @@ def insert_all(query: str, records_to_insert):
         cursor = connection.cursor()
         cursor.executemany(query, records_to_insert)
         connection.commit()
-        print(cursor.rowcount, "Record inserted successfully")
+        print(len(records_to_insert), "Record inserted successfully")
 
     except mysql.connector.Error as error:
         print("Failed to insert record into MySQL table {}".format(error))
