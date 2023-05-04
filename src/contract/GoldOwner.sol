@@ -6,7 +6,7 @@ pragma solidity >=0.7.0 <0.9.0;
  * @title Owner
  * @dev Set & change owner Guava
  */
-contract Owner {
+contract GoldOwner {
 
     address private owner;
 
@@ -24,7 +24,7 @@ contract Owner {
         emit OwnerSet(address(0), owner);
     }
 
-    function makeGuava(address newOwner) public isOwner {
+    function makeOwner(address newOwner) public isOwner {
         emit OwnerSet(owner, newOwner);
         owner = newOwner;
     }
@@ -41,7 +41,7 @@ contract Owner {
         return owner;
     }
 
-    function admitOwner(address newOwner) external view returns (address) {
+    function admitOwner() external view returns (address) {
         return owner;
     }
 }
