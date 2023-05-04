@@ -14,7 +14,7 @@ with open('../../abi/skybreach-abi.json', 'r') as file:
     abi_skybreach = file.read().replace('\n', '')
 
 address_moon = resources.variables.ADDRESS_MOON
-address_main = resources.variables.ADDRESS_MAIN
+address_main = resources.variables.ADDRESS_FIGA
 
 contract_skybreach = resources.variables.CONTRACT_ADDRESS_SKYBREACH
 contract_skybreach_component = web3.eth.contract(address=Web3.toChecksumAddress(contract_skybreach), abi=abi_skybreach)
