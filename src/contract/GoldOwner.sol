@@ -2,8 +2,6 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-import "hardhat/console.sol";
-
 /**
  * @title Owner
  * @dev Set & change owner Guava
@@ -22,7 +20,6 @@ contract Owner {
     }
 
     constructor() {
-        console.log("Owner contract deployed by Guava :", msg.sender);
         owner = msg.sender;
         emit OwnerSet(address(0), owner);
     }
@@ -45,7 +42,6 @@ contract Owner {
     }
 
     function admitOwner(address newOwner) external view returns (address) {
-        console.log("Admit contract called by: ", newOwner);
         return owner;
     }
 }
