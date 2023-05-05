@@ -8,7 +8,7 @@ import src.contract.db_connection as db
 
 
 def define_contract(web3, wallet_address, contract_name):
-    compiled_contract_file = wallet_address[2:7] + ":" + contract_name + ".json"
+    compiled_contract_file = "result/" + wallet_address[2:7] + ":" + contract_name + ".json"
     contract_filename = contract_name + ".sol"
 
     if os.path.isfile(compiled_contract_file):

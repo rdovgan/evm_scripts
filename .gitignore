@@ -132,4 +132,4 @@ dmypy.json
 .pyre/
 
 # Compiled contracts
-src/contract/*.json
+src/contract/result/*.json
