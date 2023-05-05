@@ -11,8 +11,8 @@ provider_rpc = {
 }
 web3 = Web3(Web3.HTTPProvider(provider_rpc["testnet"]))
 
-wallet_address = resources.variables.ADDRESS_MERCURY
-private_key = resources.variables.PRIVATE_KEY_MERCURY
+wallet_address = resources.variables.ADDRESS_MARS
+private_key = resources.variables.PRIVATE_KEY_MARS
 
 contract_name = "GoldOwner"
 
