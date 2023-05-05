@@ -42,7 +42,6 @@ def insert_record(query: str, record_to_insert):
         if connection.is_connected():
             cursor.close()
             connection.close()
-            print("MySQL connection is closed")
 
 
 def read_record(query: str):
@@ -65,7 +64,6 @@ def read_record(query: str):
         if connection.is_connected():
             connection.close()
             cursor.close()
-            print("MySQL connection is closed")
 
 
 # contract_link [owner, contract_type, contract_link]
