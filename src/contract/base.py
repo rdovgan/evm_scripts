@@ -2,7 +2,7 @@ import random
 
 from web3 import Web3
 
-import resources.variables
+from wallet import wallets as w
 import src.contract.contract_service as service
 import src.contract.db_connection as db
 
@@ -11,8 +11,8 @@ provider_rpc = {
 }
 web3 = Web3(Web3.HTTPProvider(provider_rpc["testnet"]))
 
-wallet_address = resources.variables.ADDRESS_MARS
-private_key = resources.variables.PRIVATE_KEY_MARS
+wallet_address = w.ADDRESS_MARS
+private_key = w.PRIVATE_KEY_MARS
 
 contract_name = "GoldOwner"
 
