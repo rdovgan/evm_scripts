@@ -29,11 +29,11 @@ def define_contract(web3, wallet_address, contract_name):
 
 def generate_contract_compilation(web3, wallet_address, contract_name):
     contract_filename = contract_name + ".sol"
-    balance_ginger = web3.from_wei(web3.eth.get_balance(wallet_address), "ether")
-    print(f"The balance of {wallet_address} is: {balance_ginger} ETH")
+    balance = web3.from_wei(web3.eth.get_balance(wallet_address), "ether")
+    print(f"The balance of {wallet_address} is: {balance} ETH")
     install_solc('0.8.0')
     script_dir = os.path.dirname(os.path.realpath(__file__))
-    with open(script_dir + "/" + contract_filename, "r") as file:
+    with open(script_dir + "/solidity/" + contract_filename, "r") as file:
         gold_owner_file = file.read()
     compiled_sol = compile_standard(
         {
