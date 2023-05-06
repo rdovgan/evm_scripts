@@ -1,10 +1,16 @@
 import random
 
+import contract_service as service
+import db_connection as db
+
+from time import sleep
 from web3 import Web3
 
-import src.contract.contract_service as service
-import src.contract.db_connection as db
-import resources.variables as w
+from wallet import wallets as w
+
+# wait up to 20 minutes
+delay = random.randint(1, 20) * 60
+sleep(delay)
 
 provider_rpc = {
     "testnet": "https://base-goerli.public.blastapi.io",
@@ -31,7 +37,8 @@ contract_name = "GoldOwner"
 gold_owner_contract = service.define_contract(web3, wallet_address, contract_name)
 contract_address = service.deploy_contract(gold_owner_contract, web3, wallet_address, private_key, contract_name)
 
-times = random.randint(0, 4)
+times = random.randint(0, 4) + random.randint(0, 5)
 for x in range(times):
+    sleep(random.randint(1, 5) * 17 - 10)
     service.call_make_gold(gold_owner_contract, web3, wallet_address, private_key, contract_address)
     # service.call_make_gold(gold_owner_contract, web3, wallet_address, private_key, db.read_contract(resources.variables.ADDRESS_GINGER)[2])
