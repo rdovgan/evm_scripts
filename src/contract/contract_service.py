@@ -4,19 +4,20 @@ import os
 from hexbytes import HexBytes
 from solcx import compile_standard, install_solc
 
-import src.contract.db_connection as db
+import db_connection as db
 
 
 def define_contract(web3, wallet_address, contract_name):
     compiled_contract_file = "result/" + wallet_address[2:7] + ":" + contract_name + ".json"
     contract_filename = contract_name + ".sol"
 
+    script_dir = os.path.dirname(os.path.realpath(__file__))
     if os.path.isfile(compiled_contract_file):
-        with open(compiled_contract_file, "r") as file:
+        with open(script_dir + "/" + compiled_contract_file, "r") as file:
             compiled_sol = json.load(file)
     else:
         compiled_sol = generate_contract_compilation(web3, wallet_address, contract_name)
-        with open(compiled_contract_file, "w") as file:
+        with open(script_dir + "/" + compiled_contract_file, "w") as file:
             json.dump(compiled_sol, file)
     # get bytecode
     bytecode = compiled_sol["contracts"][contract_filename][contract_name]["evm"]["bytecode"]["object"]
@@ -31,7 +32,8 @@ def generate_contract_compilation(web3, wallet_address, contract_name):
     balance_ginger = web3.from_wei(web3.eth.get_balance(wallet_address), "ether")
     print(f"The balance of {wallet_address} is: {balance_ginger} ETH")
     install_solc('0.8.0')
-    with open(contract_filename, "r") as file:
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    with open(script_dir + "/" + contract_filename, "r") as file:
         gold_owner_file = file.read()
     compiled_sol = compile_standard(
         {

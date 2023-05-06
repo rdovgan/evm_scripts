@@ -1,5 +1,6 @@
 import mysql.connector
 from configparser import ConfigParser
+import os
 
 
 def read_db_config(filename='../../resources/config.ini', section='mysql'):
@@ -10,6 +11,7 @@ def read_db_config(filename='../../resources/config.ini', section='mysql'):
     """
     # create parser and read ini configuration file
     parser = ConfigParser()
+    filename = os.path.dirname(os.path.realpath(__file__)) + "/" + filename
     parser.read(filename)
 
     # get section, default to mysql
