@@ -29,10 +29,10 @@ random_wallet = random.choice(addresses)
 wallet_address = random_wallet[0]
 private_key = random_wallet[1]
 
-gold_owner_contract = service.define_contract(web3, wallet_address, contract_name)
-contract_address = service.deploy_contract(gold_owner_contract, web3, wallet_address, private_key, contract_name)
+gold_counter_contract = service.define_contract(web3, wallet_address, contract_name)
+contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_address, private_key, contract_name)
 
 times = random.randint(0, 4) + random.randint(0, 5)
 for x in range(times):
     sleep(random.randint(1, 5) * 17 - 10)
-    service.call_make_gold(gold_owner_contract, web3, wallet_address, private_key, contract_address)
+    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address)

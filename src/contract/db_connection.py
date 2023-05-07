@@ -69,8 +69,8 @@ def read_record(query: str):
 
 
 # contract_link [owner, contract_type, contract_link]
-def read_contract(owner):
-    return read_record(f'SELECT * FROM contract_link WHERE owner = "{owner}"')
+def read_contract(owner, contract_type):
+    return read_record(f'SELECT * FROM contract_link WHERE owner = "{owner}" AND contract_type = "{contract_type}"')
 
 
 def insert_contract(record_to_insert):

@@ -54,7 +54,7 @@ def generate_contract_compilation(web3, wallet_address, contract_name):
 
 def deploy_contract(contract_object, web3, wallet_address, private_key, contract_name):
     # check if contract was deployed before
-    contract_data = db.read_contract(wallet_address)
+    contract_data = db.read_contract(wallet_address, contract_name)
     if contract_data is not None:
         return contract_data[2]
 
@@ -76,7 +76,7 @@ def deploy_contract(contract_object, web3, wallet_address, private_key, contract
     transaction_contract_address = web3.eth.wait_for_transaction_receipt(transaction_hash).contractAddress
     print(f"Done! Contract deployed to {transaction_contract_address}")
     db.insert_contract((wallet_address, contract_name, transaction_contract_address))
-    return db.read_contract(wallet_address)[2]
+    return db.read_contract(wallet_address, contract_name)[2]
 
 
 def call_make_gold(contract_object, web3, wallet_address, private_key, contract_address):
