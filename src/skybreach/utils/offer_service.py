@@ -52,7 +52,7 @@ def make_buy_offer(land_id: int):
 
 def skip_lands_in_wallets(land_to_owners):
     return [land_to_owner for land_to_owner in land_to_owners if
-            land_to_owner[1] not in [variables.ADDRESS_MOON, variables.ADDRESS_FIGA, variables.ADDRESS_POME, variables.ADDRESS_GINGER]]
+            land_to_owner[1] not in [variables.ADDRESS_MOON, variables.ADDRESS_FIGA, variables.ADDRESS_PAPAYA, variables.ADDRESS_GINGER]]
 
 
 def skip_land_types(land_to_owners, land_info_records):

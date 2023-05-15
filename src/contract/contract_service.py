@@ -16,7 +16,7 @@ def define_contract(web3, wallet_address, contract_name):
         with open(script_dir + "/" + compiled_contract_file, "r") as file:
             compiled_sol = json.load(file)
     else:
-        compiled_sol = generate_contract_compilation(web3, wallet_address, contract_name)
+        compiled_sol = generate_contract_compilation(contract_name)
         with open(script_dir + "/" + compiled_contract_file, "w") as file:
             json.dump(compiled_sol, file)
     # get bytecode
@@ -27,10 +27,8 @@ def define_contract(web3, wallet_address, contract_name):
     return web3.eth.contract(abi=abi, bytecode=bytecode)
 
 
-def generate_contract_compilation(web3, wallet_address, contract_name):
+def generate_contract_compilation(contract_name):
     contract_filename = contract_name + ".sol"
-    balance = web3.from_wei(web3.eth.get_balance(wallet_address), "ether")
-    print(f"The balance of {wallet_address} is: {balance} ETH")
     install_solc('0.8.0')
     script_dir = os.path.dirname(os.path.realpath(__file__))
     with open(script_dir + "/solidity/" + contract_filename, "r") as file:

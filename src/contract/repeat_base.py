@@ -33,6 +33,9 @@ random_wallet = random.choice(addresses)
 wallet_address = random_wallet[0]
 private_key = random_wallet[1]
 
+balance = web3.from_wei(web3.eth.get_balance(wallet_address), "ether")
+print(f"The balance of {wallet_address} is: {balance} ETH")
+
 contract_name = "GoldOwner"
 
 gold_owner_contract = service.define_contract(web3, wallet_address, contract_name)
