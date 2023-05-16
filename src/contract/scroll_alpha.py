@@ -12,7 +12,7 @@ from wallet import wallets as w
 
 # wait up to 20 minutes
 delay = random.randint(1, 20) * 60
-# sleep(delay)
+sleep(delay)
 
 provider_rpc = {
     "mainnet": "https://scroll-alphanet.public.blastapi.io",
@@ -57,6 +57,5 @@ def call_make_gold(contract_object, web3, wallet_address, private_key, contract_
 
 times = random.randint(1, 4) + random.randint(0, 5)
 for x in range(times):
-    # sleep(random.randint(1, 5) * 17 - 10)
+    sleep(random.randint(1, 5) * 17 - 10)
     call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address)
-
