@@ -3,14 +3,14 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 /**
- * @title Owner
+ * @title Optimism BNB
  * @dev Set & change owner
  */
-contract GoldOwner {
+contract GoldScroll {
 
     address private owner;
 
-    uint256 goldCount;
+    uint256 optimism;
 
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
 
@@ -29,12 +29,12 @@ contract GoldOwner {
         owner = newOwner;
     }
 
-    function makeGold() public {
-        goldCount = goldCount + 1;
+    function makeOptimism() public {
+        optimism = optimism + 1;
     }
 
-    function getGold() public view returns (uint256) {
-        return goldCount;
+    function getOptimism() public view returns (uint256) {
+        return optimism;
     }
 
     function getOwner() external view returns (address) {

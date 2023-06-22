@@ -4,7 +4,7 @@ pragma solidity >=0.7.0 <0.9.0;
 
 /**
  * @title Scroll Alpha
- * @dev Set & change owner Guava
+ * @dev Set & change owner
  */
 contract GoldScroll {
 
