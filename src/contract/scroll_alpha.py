@@ -4,7 +4,6 @@ import contract_service as service
 import db_connection as db
 
 from time import sleep
-from hexbytes import HexBytes
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
@@ -45,21 +44,8 @@ gold_counter_contract = service.define_contract(web3, wallet_address, contract_n
 contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_address, private_key, contract_name)
 
 
-def call_make_gold(contract_object, web3, wallet_address, private_key, contract_address):
-    custom_gas_price = web3.to_wei(150, "gwei")
-    make_gold = contract_object.functions.makeGold().build_transaction(
-        {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address), "gasPrice": custom_gas_price})
-    # Sign the transaction
-    sign_store_contact = web3.eth.account.sign_transaction(
-        make_gold, private_key=private_key
-    )
-    # Send the transaction
-    send_store_contact = web3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-    transaction_receipt = web3.eth.wait_for_transaction_receipt(send_store_contact)
-    print(f"Submitted contract method execution {HexBytes.hex(transaction_receipt.transactionHash)}")
-
-
 times = random.randint(1, 4) + random.randint(0, 5)
+print(f"Prepare to make {times} transactions")
 for x in range(times):
     sleep(random.randint(1, 5) * 17 - 10)
-    call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address)
+    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, web3.eth.gas_price)
