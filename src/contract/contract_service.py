@@ -77,9 +77,12 @@ def deploy_contract(contract_object, web3, wallet_address, private_key, contract
     return db.read_contract(wallet_address, contract_name)[2]
 
 
-def call_make_gold(contract_object, web3, wallet_address, private_key, contract_address):
-    make_gold = contract_object.functions.makeGold().build_transaction(
-        {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address)})
+def call_make_gold(contract_object, web3, wallet_address, private_key, contract_address, gas_price=None):
+    if gas_price is None:
+        transaction = {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address)}
+    else:
+        transaction = {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address), "gasPrice": gas_price}
+    make_gold = contract_object.functions.makeGold().build_transaction(transaction)
     # Sign the transaction
     sign_store_contact = web3.eth.account.sign_transaction(
         make_gold, private_key=private_key

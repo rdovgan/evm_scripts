@@ -48,4 +48,4 @@ print(f"Prepare to make {times} transactions")
 for x in range(times):
     # sleep(random.randint(1, 5) * 17 - 10)
     sleep(10)
-    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address)
+    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, web3.eth.gas_price)
