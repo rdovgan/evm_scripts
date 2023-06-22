@@ -10,20 +10,23 @@ from wallet import wallets as w
 
 # wait up to 20 minutes
 delay = random.randint(1, 20) * 60
-sleep(delay)
+# sleep(delay)
 
 provider_rpc = {
-    "testnet": "https://data-seed-prebsc-1-s1.binance.org",
+    "testnet": "https://data-seed-prebsc-1-s1.binance.org:8545",
 }
 web3 = Web3(Web3.HTTPProvider(provider_rpc["testnet"]))
 
-if web3.eth.gas_price > 100000000:
+if web3.eth.gas_price > 10000000000:
     raise "Gas price is too high"
 
 addresses = [(w.ADDRESS_BANANA, w.PRIVATE_KEY_BANANA), (w.ADDRESS_MANGO, w.PRIVATE_KEY_MANGO), (w.ADDRESS_GUAVA, w.PRIVATE_KEY_GUAVA),
              (w.ADDRESS_GINGER, w.PRIVATE_KEY_GINGER),
-             (w.ADDRESS_MERCURY, w.PRIVATE_KEY_MERCURY), (w.ADDRESS_VENUS, w.PRIVATE_KEY_VENUS), (w.ADDRESS_MARS, w.PRIVATE_KEY_MARS),
-             (w.ADDRESS_JUPITER, w.PRIVATE_KEY_JUPITER), (w.ADDRESS_SATURN, w.PRIVATE_KEY_SATURN), (w.ADDRESS_URANUS, w.PRIVATE_KEY_URANUS)]
+             (w.ADDRESS_MERCURY, w.PRIVATE_KEY_MERCURY),
+             # (w.ADDRESS_VENUS, w.PRIVATE_KEY_VENUS),
+             (w.ADDRESS_MARS, w.PRIVATE_KEY_MARS),
+             # (w.ADDRESS_JUPITER, w.PRIVATE_KEY_JUPITER), (w.ADDRESS_SATURN, w.PRIVATE_KEY_SATURN), (w.ADDRESS_URANUS, w.PRIVATE_KEY_URANUS)
+             ]
 
 contract_name = "OptimismBnb"
 
@@ -39,6 +42,8 @@ gold_counter_contract = service.define_contract(web3, wallet_address, contract_n
 contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_address, private_key, contract_name)
 
 times = random.randint(0, 4) + random.randint(0, 5)
+print(f"Prepare to make {times} transactions")
 for x in range(times):
-    sleep(random.randint(1, 5) * 17 - 10)
+    # sleep(random.randint(1, 5) * 17 - 10)
+    sleep(10)
     service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address)

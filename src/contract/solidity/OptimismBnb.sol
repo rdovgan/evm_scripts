@@ -6,7 +6,7 @@ pragma solidity >=0.7.0 <0.9.0;
  * @title Optimism BNB
  * @dev Set & change owner
  */
-contract GoldScroll {
+contract OptimismBnb {
 
     address private owner;
 
@@ -29,11 +29,11 @@ contract GoldScroll {
         owner = newOwner;
     }
 
-    function makeOptimism() public {
+    function makeGold() public {
         optimism = optimism + 1;
     }
 
-    function getOptimism() public view returns (uint256) {
+    function getGold() public view returns (uint256) {
         return optimism;
     }
 
