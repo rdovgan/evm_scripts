@@ -5,6 +5,7 @@ import db_connection as db
 
 from time import sleep
 from web3 import Web3
+from web3.middleware import geth_poa_middleware
 
 from wallet import wallets as w
 
@@ -16,6 +17,7 @@ provider_rpc = {
     "testnet": "https://data-seed-prebsc-1-s1.binance.org:8545",
 }
 web3 = Web3(Web3.HTTPProvider(provider_rpc["testnet"]))
+web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
 if web3.eth.gas_price > 10000000000:
     raise "Gas price is too high"
