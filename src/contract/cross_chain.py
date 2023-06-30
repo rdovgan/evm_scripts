@@ -1,7 +1,7 @@
 from web3 import Web3
 import decimal
 
-from wallet import wallets as w
+from src.wallet import wallets as w
 
 provider_rpc = {
     "mainnet": "https://ethereum.publicnode.com",
@@ -18,11 +18,8 @@ provider_rpc = {
     "aurora": "https://mainnet.aurora.dev"
 }
 
-all_wallets = [w.ADDRESS_FIGA, w.ADDRESS_LEDGER_E4, w.ADDRESS_LEDGER_D9, w.ADDRESS_LEDGER_8C, w.ADDRESS_LEDGER_77, w.ADDRESS_PAPAYA, w.ADDRESS_BANANA,
-               w.ADDRESS_MANGO, w.ADDRESS_GINGER, w.ADDRESS_GUAVA, w.ADDRESS_MOON, w.ADDRESS_MERCURY, w.ADDRESS_VENUS, w.ADDRESS_MARS, w.ADDRESS_JUPITER,
-               w.ADDRESS_SATURN, w.ADDRESS_URANUS, w.ADDRESS_NEPTUNE, w.ADDRESS_MOBOX, w.ADDRESS_SIRIUS, w.ADDRESS_POLARIS, w.ADDRESS_ANTARES, w.ADDRESS_LIBRA,
-               w.ADDRESS_AQUARIUS, w.ADDRESS_WOLF, w.ADDRESS_FOX, w.ADDRESS_DEER, w.ADDRESS_BEAVER, w.ADDRESS_EAGLE, w.ADDRESS_SPARROW, w.ADDRESS_CROW,
-               w.ADDRESS_RABBIT, w.ADDRESS_TURTLE]
+wallets_list = w.all_wallets
+all_wallets = list(w.load_wallets(wallets_list).values())
 
 total_eth = decimal.Decimal(0.0)
 balance_by_network = {}
@@ -31,7 +28,8 @@ for network in provider_rpc.keys():
     print(f"\nStart scanning {network} network")
     network_eth = decimal.Decimal(0.0)
     web3 = Web3(Web3.HTTPProvider(provider_rpc[network]))
-    for wallet in all_wallets:
+    for wallet_data in all_wallets:
+        wallet = wallet_data[0]
         balance = web3.from_wei(web3.eth.get_balance(wallet), "ether")
         network_eth += balance
         print(f"The balance of {wallet} is: {balance} ETH")

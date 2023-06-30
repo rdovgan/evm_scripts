@@ -48,11 +48,12 @@ Turtle = 'TURTLE'
 all_wallets = {Figa, Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77, Papaya, Banana, Mango, Ginger, Guava, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus,
                Neptune, MoBox, Sirius, Polaris, Antares, Libra, Aquarius, Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 
-test = {Aquarius}
+wallets_with_keys = {Banana, Mango, Guava, Ginger, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Sirius, Polaris, Antares, Libra, Aquarius,
+                     Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 
 
 def get_wallet_data(wallet_name):
-    return os.getenv(Address + wallet_name),  os.getenv(PrivateKey + wallet_name)
+    return os.getenv(Address + wallet_name), os.getenv(PrivateKey + wallet_name)
 
 
 def load_wallets(wallets_to_load):
@@ -68,4 +69,3 @@ def decrypt_value(fernet, wallet_data):
     if wallet_data[1] is None:
         return None
     return str(fernet.decrypt(bytes(wallet_data[1], 'UTF-8')), 'UTF-8')
-

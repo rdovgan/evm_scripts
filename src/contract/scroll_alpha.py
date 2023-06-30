@@ -1,13 +1,12 @@
 import random
 
 import contract_service as service
-import db_connection as db
 
 from time import sleep
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
-from wallet import wallets as w
+from src.wallet import wallets as w
 
 # wait up to 20 minutes
 delay = random.randint(1, 20) * 60
@@ -19,15 +18,8 @@ provider_rpc = {
 web3 = Web3(Web3.HTTPProvider(provider_rpc["mainnet"]))
 web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-addresses = [(w.ADDRESS_BANANA, w.PRIVATE_KEY_BANANA), (w.ADDRESS_MANGO, w.PRIVATE_KEY_MANGO), (w.ADDRESS_GINGER, w.PRIVATE_KEY_GINGER),
-             (w.ADDRESS_GUAVA, w.PRIVATE_KEY_GUAVA),
-             (w.ADDRESS_MERCURY, w.PRIVATE_KEY_MERCURY), (w.ADDRESS_VENUS, w.PRIVATE_KEY_VENUS), (w.ADDRESS_MARS, w.PRIVATE_KEY_MARS),
-             (w.ADDRESS_JUPITER, w.PRIVATE_KEY_JUPITER), (w.ADDRESS_SATURN, w.PRIVATE_KEY_SATURN), (w.ADDRESS_URANUS, w.PRIVATE_KEY_URANUS),
-             (w.ADDRESS_NEPTUNE, w.PRIVATE_KEY_NEPTUNE), (w.ADDRESS_SIRIUS, w.PRIVATE_KEY_SIRIUS), (w.ADDRESS_POLARIS, w.PRIVATE_KEY_POLARIS),
-             (w.ADDRESS_ANTARES, w.PRIVATE_KEY_ANTARES), (w.ADDRESS_LIBRA, w.PRIVATE_KEY_LIBRA), (w.ADDRESS_AQUARIUS, w.PRIVATE_KEY_AQUARIUS),
-             (w.ADDRESS_FOX, w.PRIVATE_KEY_FOX), (w.ADDRESS_WOLF, w.PRIVATE_KEY_WOLF), (w.ADDRESS_DEER, w.PRIVATE_KEY_DEER),
-             (w.ADDRESS_BEAVER, w.PRIVATE_KEY_BEAVER), (w.ADDRESS_EAGLE, w.PRIVATE_KEY_EAGLE), (w.ADDRESS_SPARROW, w.PRIVATE_KEY_SPARROW),
-             (w.ADDRESS_CROW, w.PRIVATE_KEY_CROW), (w.ADDRESS_RABBIT, w.PRIVATE_KEY_RABBIT), (w.ADDRESS_TURTLE, w.PRIVATE_KEY_TURTLE)]
+wallets_list = w.wallets_with_keys
+addresses = list(w.load_wallets(wallets_list).values())
 
 
 contract_name = "GoldScroll"
