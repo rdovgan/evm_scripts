@@ -51,7 +51,7 @@ all_wallets = {Figa, Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77, Papaya, Banana,
 test = {Aquarius}
 
 
-def load_wallet(wallet_name):
+def get_wallet_data(wallet_name):
     return os.getenv(Address + wallet_name),  os.getenv(PrivateKey + wallet_name)
 
 
@@ -59,7 +59,7 @@ def load_wallets(wallets_to_load):
     fernet = Fernet(key_to_decrypt)
     wallets = {}
     for wallet_name in wallets_to_load:
-        wallet_data = load_wallet(wallet_name)
+        wallet_data = get_wallet_data(wallet_name)
         wallets[wallet_name] = wallet_data[0], decrypt_value(fernet, wallet_data)
     return wallets
 
