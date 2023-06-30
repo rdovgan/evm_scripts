@@ -1,12 +1,11 @@
 import random
 
 import contract_service as service
-import db_connection as db
 
 from time import sleep
 from web3 import Web3
 
-from wallet import wallets as w
+from src.wallet import wallets as w
 
 # wait up to 20 minutes
 delay = random.randint(1, 20) * 60
@@ -20,10 +19,8 @@ web3 = Web3(Web3.HTTPProvider(provider_rpc["mainnet"]))
 if web3.eth.gas_price > 100000000:
     raise "Gas price is too high"
 
-addresses = [(w.ADDRESS_BANANA, w.PRIVATE_KEY_BANANA), (w.ADDRESS_MANGO, w.PRIVATE_KEY_MANGO), (w.ADDRESS_GUAVA, w.PRIVATE_KEY_GUAVA),
-             (w.ADDRESS_GINGER, w.PRIVATE_KEY_GINGER),
-             (w.ADDRESS_MERCURY, w.PRIVATE_KEY_MERCURY), (w.ADDRESS_VENUS, w.PRIVATE_KEY_VENUS), (w.ADDRESS_MARS, w.PRIVATE_KEY_MARS),
-             (w.ADDRESS_JUPITER, w.PRIVATE_KEY_JUPITER), (w.ADDRESS_SATURN, w.PRIVATE_KEY_SATURN), (w.ADDRESS_URANUS, w.PRIVATE_KEY_URANUS)]
+wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Saturn, w.Uranus}
+addresses = list(w.load_wallets(wallets_list).values())
 
 contract_name = "GoldCounter"
 

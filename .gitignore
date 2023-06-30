@@ -133,4 +133,3 @@ dmypy.json
 
 # Compiled contracts
 src/contract/result/*.json
-src/contract/wallet/*
