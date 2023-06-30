@@ -78,3 +78,9 @@ def insert_contract(record_to_insert):
         VALUES (%s, %s, %s) """
     insert_record(insert_query, record_to_insert)
 
+
+def read_setting(setting_name):
+    setting = read_record(f'SELECT value FROM setting WHERE name = "{setting_name}"')
+    if setting is not None:
+        return setting[0]
+    return None
