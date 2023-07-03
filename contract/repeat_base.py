@@ -7,8 +7,8 @@ from web3 import Web3
 
 from wallet import wallets as w
 
-# wait up to 20 minutes
-delay = random.randint(1, 20) * 60
+# wait up to 40 minutes
+delay = random.randint(1, 40) * 60
 sleep(delay)
 
 provider_rpc = {
@@ -32,7 +32,7 @@ contract_name = "GoldOwner"
 gold_owner_contract = service.define_contract(web3, wallet_address, contract_name)
 contract_address = service.deploy_contract(gold_owner_contract, web3, wallet_address, private_key, contract_name)
 
-times = random.randint(0, 4) + random.randint(0, 5)
+times = random.randint(0, 10) + random.randint(0, 10)
 print(f"Prepare to make {times} transactions")
 for x in range(times):
     sleep(random.randint(1, 5) * 17 - 10)
