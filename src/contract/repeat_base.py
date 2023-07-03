@@ -37,4 +37,3 @@ print(f"Prepare to make {times} transactions")
 for x in range(times):
     sleep(random.randint(1, 5) * 17 - 10)
     service.call_make_gold(gold_owner_contract, web3, wallet_address, private_key, contract_address)
-    # service.call_make_gold(gold_owner_contract, web3, wallet_address, private_key, db.read_contract(resources.variables.ADDRESS_GINGER)[2])
