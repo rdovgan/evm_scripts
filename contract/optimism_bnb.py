@@ -8,18 +8,15 @@ from web3.middleware import geth_poa_middleware
 
 from wallet import wallets as w
 
-# wait up to 20 minutes
-delay = random.randint(1, 20) * 60
-# sleep(delay)
+# wait up to 10 minutes
+delay = random.randint(1, 20) * random.randint(1, 30)
+sleep(delay)
 
 provider_rpc = {
     "testnet": "https://data-seed-prebsc-1-s1.binance.org:8545",
 }
 web3 = Web3(Web3.HTTPProvider(provider_rpc["testnet"]))
 web3.middleware_onion.inject(geth_poa_middleware, layer=0)
-
-if web3.eth.gas_price > 10000000000:
-    raise "Gas price is too high"
 
 wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Sirius, w.Libra, w.Aquarius}
 addresses = list(w.load_wallets(wallets_list).values())
@@ -40,6 +37,5 @@ contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_a
 times = random.randint(0, 4) + random.randint(0, 5)
 print(f"Prepare to make {times} transactions")
 for x in range(times):
-    # sleep(random.randint(1, 5) * 17 - 10)
-    sleep(10)
+    sleep(random.randint(1, 5) * random.randint(11, 13) - random.randint(7, 10))
     service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, web3.eth.gas_price)

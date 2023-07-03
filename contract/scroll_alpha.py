@@ -8,8 +8,8 @@ from web3.middleware import geth_poa_middleware
 
 from wallet import wallets as w
 
-# wait up to 20 minutes
-delay = random.randint(1, 20) * 60
+# wait up to 15 minutes
+delay = random.randint(1, 15) * 60
 sleep(delay)
 
 provider_rpc = {
@@ -36,8 +36,8 @@ gold_counter_contract = service.define_contract(web3, wallet_address, contract_n
 contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_address, private_key, contract_name)
 
 
-times = random.randint(1, 4) + random.randint(0, 5)
+times = random.randint(4, 10) + random.randint(0, 10)
 print(f"Prepare to make {times} transactions")
 for x in range(times):
-    sleep(random.randint(1, 5) * 17 - 10)
+    sleep(random.randint(1, 5) * 7)
     service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, web3.eth.gas_price)
