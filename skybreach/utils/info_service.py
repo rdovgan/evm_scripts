@@ -2,7 +2,7 @@ from web3 import Web3
 
 import resources.variables
 import coordinates_utils
-from src.skybreach import rmrk_token
+from skybreach import rmrk_token
 
 providerRpc = {
     "development": "https://rpc.api.moonriver.moonbeam.network/",

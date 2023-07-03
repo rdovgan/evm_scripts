@@ -2,8 +2,8 @@ import random
 
 from web3 import Web3
 
-from src.wallet import wallets as w
-import src.contract.contract_service as service
+from wallet import wallets as w
+import contract.contract_service as service
 
 
 provider_rpc = {

@@ -1,7 +1,7 @@
-import src.skybreach.utils.offer_service as service
-import src.skybreach.db_connection as db
+import skybreach.utils.offer_service as service
+import skybreach.db_connection as db
 import time
-from src.skybreach.utils import coordinates_utils
+from skybreach.utils import coordinates_utils
 
 
 def process_job_to_make_offers():

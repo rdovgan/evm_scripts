@@ -4,9 +4,9 @@ from web3 import Web3
 from web3.gas_strategies.rpc import rpc_gas_price_strategy
 
 import resources.variables as variables
-import src.skybreach.db_connection as db
-from src.skybreach.land_info_dto import Rarity
-from src.skybreach.rmrk_token import token_decimals
+import skybreach.db_connection as db
+from skybreach.land_info_dto import Rarity
+from skybreach.rmrk_token import token_decimals
 
 providerRpc = {
     "development": "https://rpc.api.moonriver.moonbeam.network/",

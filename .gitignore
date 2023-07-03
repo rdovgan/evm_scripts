@@ -10,6 +10,7 @@ __pycache__/
 .Python
 build/
 resources/
+db/config.ini
 develop-eggs/
 dist/
 downloads/
@@ -132,4 +133,4 @@ dmypy.json
 .pyre/
 
 # Compiled contracts
-src/contract/result/*.json
+contract/result/*.json

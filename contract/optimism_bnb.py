@@ -6,7 +6,7 @@ from time import sleep
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
-from src.wallet import wallets as w
+from wallet import wallets as w
 
 # wait up to 20 minutes
 delay = random.randint(1, 20) * 60

@@ -1,7 +1,7 @@
 from web3 import Web3
 import decimal
 
-from src.wallet import wallets as w
+from wallet import wallets as w
 
 provider_rpc = {
     "mainnet": "https://ethereum.publicnode.com",

@@ -1,5 +1,5 @@
 import enum
-from src.skybreach.utils.coordinates_utils import convert_to_coordinates
+from skybreach.utils.coordinates_utils import convert_to_coordinates
 
 
 class Rarity(enum.Enum):

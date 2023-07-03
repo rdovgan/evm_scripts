@@ -5,7 +5,7 @@ import contract_service as service
 from time import sleep
 from web3 import Web3
 
-from src.wallet import wallets as w
+from wallet import wallets as w
 
 # wait up to 20 minutes
 delay = random.randint(1, 20) * 60

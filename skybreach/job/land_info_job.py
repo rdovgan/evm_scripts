@@ -1,14 +1,14 @@
 import requests
 import json
 
-from src.skybreach import db_connection
-from src.skybreach.utils import coordinates_utils
+from skybreach import db_connection
+from skybreach.utils import coordinates_utils
 from land_info_job_utils import get_land_info
 from land_info_job_utils import get_plots_owners
 from land_info_job_utils import split_array
 from land_info_job_utils import define_land_to_owner_list
-from src.skybreach.land_info_dto import LandInfo
-from src.skybreach.land_info_dto import AttributeType
+from skybreach.land_info_dto import LandInfo
+from skybreach.land_info_dto import AttributeType
 
 
 # Job to generate coordinates from (1,1) to (255,255) and retrieve data from blockchain and store to DB

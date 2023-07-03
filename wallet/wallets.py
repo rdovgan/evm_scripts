@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from cryptography.fernet import Fernet
-from src.contract import db_connection as db
+from db import db_connection as db
 
 load_dotenv()
 

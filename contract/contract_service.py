@@ -4,7 +4,7 @@ import os
 from hexbytes import HexBytes
 from solcx import compile_standard, install_solc
 
-import db_connection as db
+from db import db_connection as db
 
 
 def define_contract(web3, wallet_address, contract_name):
