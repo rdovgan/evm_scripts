@@ -74,7 +74,7 @@ def deploy_contract(contract_object, web3, wallet_address, private_key, contract
     print("Deploying Contract!")
     transaction_hash = web3.eth.send_raw_transaction(sign_transaction.rawTransaction)
     # Wait for the transaction to be mined, and get the transaction receipt
-    print("Waiting for transaction to finish...")
+    print("Waiting for transaction to finish deploy...")
     transaction_contract_address = web3.eth.wait_for_transaction_receipt(transaction_hash).contractAddress
     print(f"Done! Contract deployed to {transaction_contract_address}")
     db.insert_contract((wallet_address, contract_name, transaction_contract_address))
