@@ -1,8 +1,12 @@
 import json
 import os
+import sys
 
 from hexbytes import HexBytes
 from solcx import compile_standard, install_solc
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
 
 from db import db_connection as db
 
