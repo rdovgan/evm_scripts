@@ -8,13 +8,10 @@ from datetime import datetime
 from web3.middleware import geth_poa_middleware
 
 from wallet import wallets as w
-from logger import LoggerService
+from logger import log
 
 
-def log(message):
-    with LoggerService('../logs/optimism_bnb.log') as logger:
-        logger.info(message)
-
+log_name = 'optimism_bnb.log'
 
 # wait up to 10 minutes
 delay = random.randint(1, 20) * random.randint(1, 30)
@@ -38,13 +35,13 @@ wallet_address = random_wallet[0]
 private_key = random_wallet[1]
 
 balance = web3.from_wei(web3.eth.get_balance(wallet_address), "ether")
-log(f"The balance of {wallet_address} is: {balance} ETH")
+log(log_name, f"The balance of {wallet_address} is: {balance} ETH")
 
 gold_counter_contract = service.define_contract(web3, wallet_address, contract_name)
-contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_address, private_key, contract_name)
+contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_address, private_key, contract_name, log_name)
 
 times = random.randint(0, 4) + random.randint(0, 5)
-log(f"Prepare to make {times} transactions")
+log(log_name, f"Prepare to make {times} transactions")
 for x in range(times):
     sleep(random.randint(1, 5) * random.randint(11, 13) - random.randint(7, 10))
-    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, web3.eth.gas_price)
+    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, web3.eth.gas_price, log_name)

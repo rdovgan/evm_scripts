@@ -9,6 +9,15 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 
 from db import db_connection as db
+from logger import LoggerService
+
+
+def log(log_name, message):
+    with LoggerService(f'../logs/{log_name}') as logger:
+        logger.info(message)
+
+
+default_log_name = 'contract.log'
 
 
 def define_contract(web3, wallet_address, contract_name):
@@ -54,7 +63,7 @@ def generate_contract_compilation(contract_name):
     return compiled_sol
 
 
-def deploy_contract(contract_object, web3, wallet_address, private_key, contract_name):
+def deploy_contract(contract_object, web3, wallet_address, private_key, contract_name, log_name=default_log_name):
     # check if contract was deployed before
     contract_data = db.read_contract(wallet_address, contract_name)
     if contract_data is not None:
@@ -71,17 +80,17 @@ def deploy_contract(contract_object, web3, wallet_address, private_key, contract
     # Sign the transaction
     sign_transaction = web3.eth.account.sign_transaction(transaction, private_key=private_key)
     # Send the transaction
-    print("Deploying Contract!")
+    log(log_name, "Deploying Contract!")
     transaction_hash = web3.eth.send_raw_transaction(sign_transaction.rawTransaction)
     # Wait for the transaction to be mined, and get the transaction receipt
-    print("Waiting for transaction to finish deploy...")
+    log(log_name, "Waiting for transaction to finish deploy...")
     transaction_contract_address = web3.eth.wait_for_transaction_receipt(transaction_hash).contractAddress
-    print(f"Done! Contract deployed to {transaction_contract_address}")
+    log(log_name, f"Done! Contract deployed to {transaction_contract_address}")
     db.insert_contract((wallet_address, contract_name, transaction_contract_address))
     return db.read_contract(wallet_address, contract_name)[2]
 
 
-def call_make_gold(contract_object, web3, wallet_address, private_key, contract_address, gas_price=None):
+def call_make_gold(contract_object, web3, wallet_address, private_key, contract_address, log_name=default_log_name, gas_price=None):
     if gas_price is None:
         transaction = {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address)}
     else:
@@ -94,4 +103,4 @@ def call_make_gold(contract_object, web3, wallet_address, private_key, contract_
     # Send the transaction
     send_store_contact = web3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
     transaction_receipt = web3.eth.wait_for_transaction_receipt(send_store_contact)
-    print(f"Submitted contract method execution {HexBytes.hex(transaction_receipt.transactionHash)}")
+    log(log_name, f"Submitted contract method execution {HexBytes.hex(transaction_receipt.transactionHash)}")

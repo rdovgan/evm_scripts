@@ -25,3 +25,8 @@ class LoggerService:
 
     def close(self):
         self.file_handler.close()
+
+
+def log(log_name, message):
+    with LoggerService(f'../logs/{log_name}') as logger:
+        logger.info(message)
