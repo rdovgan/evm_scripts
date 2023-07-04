@@ -9,12 +9,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 
 from db import db_connection as db
-from logger import LoggerService
-
-
-def log(log_name, message):
-    with LoggerService(f'../logs/{log_name}') as logger:
-        logger.info(message)
+from logger import log
 
 
 default_log_name = 'contract.log'
