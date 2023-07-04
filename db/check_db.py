@@ -1,4 +1,8 @@
 from db_connection import read_setting
+from logger import log
 
 
-print(read_setting('test_setting'))
+log_name = 'check.log'
+
+
+log(log_name, read_setting('test_setting'))
