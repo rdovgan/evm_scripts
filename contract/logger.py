@@ -1,4 +1,7 @@
 import logging
+import os
+
+from dotenv import load_dotenv
 
 
 class LoggerService:
@@ -27,6 +30,9 @@ class LoggerService:
         self.file_handler.close()
 
 
+load_dotenv()
+
+
 def log(log_name, message):
-    with LoggerService(f'../logs/{log_name}') as logger:
-        logger.info(message)
+    with LoggerService(f'{os.getenv("LOGS_DIRECTORY")}/{log_name}') as logger:
+        log
