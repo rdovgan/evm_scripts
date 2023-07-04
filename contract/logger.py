@@ -35,4 +35,4 @@ load_dotenv()
 
 def log(log_name, message):
     with LoggerService(f'{os.getenv("LOGS_DIRECTORY")}/{log_name}') as logger:
-        log
+        logger.info(message)
