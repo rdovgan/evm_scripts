@@ -46,4 +46,4 @@ times = random.randint(4, 10) + random.randint(0, 10)
 log(log_name, f"Prepare to make {times} transactions")
 for x in range(times):
     sleep(random.randint(1, 5) * 7)
-    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, web3.eth.gas_price, log_name)
+    service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, log_name, web3.eth.gas_price)
