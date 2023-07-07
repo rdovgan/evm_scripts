@@ -1,0 +1,1 @@
+Folder with contracts for ABI generation

@@ -1,0 +1,6 @@
+mysql-connector-python
+python-dotenv
+hexbytes
+py-solc-x
+web3
+cryptography
