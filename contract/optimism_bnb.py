@@ -8,6 +8,7 @@ from datetime import datetime
 from web3.middleware import geth_poa_middleware
 
 from wallet import wallets as w
+from wallet import rpc
 from logger import log
 
 
@@ -18,10 +19,7 @@ delay = random.randint(1, 20) * random.randint(1, 30)
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Optimism BNB job')
 
-provider_rpc = {
-    "testnet": "https://data-seed-prebsc-1-s1.binance.org:8545",
-}
-web3 = Web3(Web3.HTTPProvider(provider_rpc["testnet"]))
+web3 = Web3(Web3.HTTPProvider(rpc.provider["optimism_bnb"]))
 web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
 wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Sirius, w.Libra, w.Aquarius}

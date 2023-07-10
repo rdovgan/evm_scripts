@@ -7,6 +7,7 @@ from web3 import Web3
 from datetime import datetime
 
 from wallet import wallets as w
+from wallet import rpc
 from logger import log
 
 
@@ -17,10 +18,7 @@ delay = random.randint(1, 30) * random.randint(3, 10) * random.randint(1, 6)
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Base job')
 
-provider_rpc = {
-    "testnet": "https://base-goerli.public.blastapi.io",
-}
-web3 = Web3(Web3.HTTPProvider(provider_rpc["testnet"]))
+web3 = Web3(Web3.HTTPProvider(rpc.provider['base']))
 
 wallets_list = w.wallets_with_keys
 addresses = list(w.load_wallets(wallets_list).values())

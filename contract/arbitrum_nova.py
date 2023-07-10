@@ -8,7 +8,7 @@ from datetime import datetime
 
 from wallet import wallets as w
 from logger import log
-
+from wallet import rpc
 
 log_name = 'arb_nova.log'
 
@@ -17,10 +17,7 @@ delay = random.randint(1, 20) * random.randint(5, 30) * random.randint(1, 2)
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Arbitrum Nova job')
 
-provider_rpc = {
-    "mainnet": "https://arbitrum-nova.public.blastapi.io",
-}
-web3 = Web3(Web3.HTTPProvider(provider_rpc["mainnet"]))
+web3 = Web3(Web3.HTTPProvider(rpc.provider['arbitrum_nova']))
 
 if web3.eth.gas_price > 100000000:
     raise "Gas price is too high"
