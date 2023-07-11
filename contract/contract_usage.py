@@ -10,11 +10,10 @@ from wallet import wallets as w
 
 # w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-wallets_list = {w.Figa}
+wallets_list = w.all_wallets
 addresses = w.load_wallets(wallets_list)
 
 load_dotenv()
-
 
 supported_chains = ['mainnet', 'optimism', 'arbitrum', 'polygon', 'smart_chain']
 
@@ -78,19 +77,16 @@ def define_transaction_list(chain, address, block_number):
                 # Retrieve the list of transactions
                 transactions = data['result']
 
-                print(f"Total Transactions: {len(transactions)}")
                 # Process the transactions
                 # print_transaction_info(transactions)
                 return transactions
-
-            else:
-                print(f"API Error: {data['message']}")
-
+            # else:
+            #     print(f"API Error: {data['message']}")
         else:
             print(f"Request Error: {response.status_code} - {response.reason}")
-
     except requests.exceptions.RequestException as e:
         print(f"Request Exception: {e}")
+    return None
 
 
 def print_transaction_info(transactions):
@@ -113,15 +109,25 @@ def has_interacted_with_contract(transactions, contract_address):
 
 
 def check_meta_mask_contract_usage():
+    wallet_rating = {}
     for chain in supported_chains:
-        print(f'--- {chain} ---')
+        print('-' * (10 + len(chain)))
+        print('-' * 5 + f'{chain}' + '-' * 5)
+        print('-' * (10 + len(chain)))
         w3 = Web3(Web3.HTTPProvider(rpc.provider[chain]))
         block_number = w3.eth.block_number
         for wallet in addresses:
             transactions = define_transaction_list(chain, addresses[wallet][0], block_number)
-            check_contract_usage(transactions, chain, 'mm', 'swap', (wallet, addresses[wallet]))
-            check_contract_usage(transactions, chain, 'mm', 'bridge', (wallet, addresses[wallet]))
-            print('---\t---\t---')
+            if transactions is None or len(transactions) == 0:
+                continue
+            print(f"{wallet} total Transactions: {len(transactions)}")
+            rating = 0
+            rating += check_contract_usage(transactions, chain, 'mm', 'swap', (wallet, addresses[wallet]))
+            rating += check_contract_usage(transactions, chain, 'mm', 'bridge', (wallet, addresses[wallet]))
+            # put rating into wallet_rating by wallet
+            wallet_rating[wallet] = wallet_rating.get(wallet, 0) + rating
+            print(f'{wallet} {rating} point(s)\n')
+    print(wallet_rating)
 
 
 def check_contract_usage(transactions, chain, service, method, wallet):
@@ -130,7 +136,9 @@ def check_contract_usage(transactions, chain, service, method, wallet):
     counter = 0
     for contract_address in contracts:
         counter += has_interacted_with_contract(transactions, contract_address)
-    print(f"{wallet[0]} has interacted with {service}.{method} {counter} time(s)")
+    if counter > 0:
+        print(f"{wallet[0]} has interacted with {service}.{method} {counter} time(s)")
+    return counter
 
 
 check_meta_mask_contract_usage()
