@@ -51,6 +51,18 @@ all_wallets = {Figa, Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77, Papaya, Banana,
 wallets_with_keys = {Banana, Mango, Guava, Ginger, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Sirius, Polaris, Antares, Libra, Aquarius,
                      Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 
+wallets_main = {Figa, Papaya, Moon, Banana, Mango, Ginger, Guava}
+
+wallets_planets = {Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune}
+
+wallets_ledger = {Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77}
+
+wallets_game = {MoBox}
+
+wallets_stars = {Sirius, Polaris, Antares, Libra, Aquarius}
+
+wallets_animals = {Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
+
 
 def get_wallet_data(wallet_name):
     return os.getenv(Address + wallet_name), os.getenv(PrivateKey + wallet_name)

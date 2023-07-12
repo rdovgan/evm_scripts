@@ -109,7 +109,7 @@ def has_interacted_with_contract(transactions, contract_address):
 
 
 def check_meta_mask_contract_usage():
-    wallet_rating = {}
+    wallets_rating = {}
     for chain in supported_chains:
         print('-' * (10 + len(chain)))
         print('-' * 5 + f'{chain}' + '-' * 5)
@@ -121,13 +121,27 @@ def check_meta_mask_contract_usage():
             if transactions is None or len(transactions) == 0:
                 continue
             print(f"{wallet} total Transactions: {len(transactions)}")
-            rating = 0
-            rating += check_contract_usage(transactions, chain, 'mm', 'swap', (wallet, addresses[wallet]))
-            rating += check_contract_usage(transactions, chain, 'mm', 'bridge', (wallet, addresses[wallet]))
+            swap_count = 0
+            bridge_count = 0
+            swap_count += check_contract_usage(transactions, chain, 'mm', 'swap', (wallet, addresses[wallet]))
+            bridge_count += check_contract_usage(transactions, chain, 'mm', 'bridge', (wallet, addresses[wallet]))
             # put rating into wallet_rating by wallet
-            wallet_rating[wallet] = wallet_rating.get(wallet, 0) + rating
-            print(f'{wallet} {rating} point(s)\n')
-    print(wallet_rating)
+            update_rating(bridge_count, swap_count, wallet, wallets_rating)
+            print(f'{wallet} {swap_count} swap(s), {bridge_count} bridge(s)\n')
+    print_total_rating(wallets_rating)
+
+
+def update_rating(bridge_count, swap_count, wallet, wallets_rating):
+    previous_rating = wallets_rating.get(wallet)
+    if previous_rating is None:
+        previous_rating = (0, 0)
+    wallets_rating[wallet] = (previous_rating[0] + swap_count, previous_rating[1] + bridge_count)
+
+
+def print_total_rating(wallets_rating):
+    for wallet_name in wallets_rating.keys():
+        if (wallets_rating[wallet_name][0] + wallets_rating[wallet_name][1]) > 0:
+            print(wallet_name, wallets_rating[wallet_name])
 
 
 def check_contract_usage(transactions, chain, service, method, wallet):
