@@ -2,7 +2,7 @@ from pathlib import Path
 
 from web3 import Web3
 from web3.gas_strategies.rpc import rpc_gas_price_strategy
-
+# TODO need to refactor this
 import resources.variables as variables
 import skybreach.db_connection as db
 from skybreach.land_info_dto import Rarity

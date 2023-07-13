@@ -1,5 +1,5 @@
 from web3 import Web3
-
+# TODO need to refactor this
 import resources.variables
 import coordinates_utils
 from skybreach import rmrk_token

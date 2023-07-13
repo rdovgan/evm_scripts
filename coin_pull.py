@@ -1,4 +1,5 @@
 from requests import Request, Session
+# TODO need to refactor this
 import resources.variables as config
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json

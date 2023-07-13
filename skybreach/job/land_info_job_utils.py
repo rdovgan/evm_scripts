@@ -1,6 +1,6 @@
 from web3 import Web3
 from pathlib import Path
-
+# TODO need to refactor this
 import resources.variables
 
 providerRpc = {

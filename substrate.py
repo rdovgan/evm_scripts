@@ -1,5 +1,5 @@
 from substrateinterface.base import SubstrateInterface
-
+# TODO need to refactor this
 import resources.variables
 
 substrate = SubstrateInterface(
