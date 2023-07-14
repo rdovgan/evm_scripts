@@ -39,5 +39,5 @@ contract_address = service.deploy_contract(gold_owner_contract, web3, wallet_add
 times = random.randint(0, 10) + random.randint(0, 10)
 log(log_name, f"Prepare to make {times} transactions")
 for x in range(times):
-    sleep(random.randint(1, 5) * random.randint(8, 17) - random.randint(1, 10))
+    sleep(random.randint(2, 5) * random.randint(8, 17) - random.randint(1, 10))
     service.call_make_gold(gold_owner_contract, web3, wallet_address, private_key, contract_address, log_name)
