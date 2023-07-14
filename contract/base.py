@@ -18,7 +18,7 @@ delay = random.randint(1, 30) * random.randint(3, 10) * random.randint(1, 6)
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Base job')
 
-web3 = Web3(Web3.HTTPProvider(rpc.provider['base']))
+web3 = Web3(Web3.HTTPProvider(rpc.test_provider['base']))
 
 wallets_list = w.wallets_with_keys
 addresses = list(w.load_wallets(wallets_list).values())

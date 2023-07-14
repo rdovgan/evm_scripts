@@ -19,10 +19,10 @@ delay = random.randint(1, 20) * random.randint(1, 30)
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Optimism BNB job')
 
-web3 = Web3(Web3.HTTPProvider(rpc.provider["optimism_bnb"]))
+web3 = Web3(Web3.HTTPProvider(rpc.test_provider["op_bnb"]))
 web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Sirius, w.Libra, w.Aquarius}
+wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Saturn, w.Uranus, w.Sirius, w.Libra, w.Aquarius}
 addresses = list(w.load_wallets(wallets_list).values())
 
 contract_name = "OptimismBnb"

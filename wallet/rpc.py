@@ -10,9 +10,15 @@ provider = {
     "smart_chain": "https://bsc.publicnode.com",
     "avax": "https://avalanche-c-chain.publicnode.com",
     "evmos": "https://evmos-evm.publicnode.com",
-    "aurora": "https://mainnet.aurora.dev"
+    "aurora": "https://mainnet.aurora.dev",
+
 }
 
+test_provider = {
+    "op_bnb": "https://data-seed-prebsc-1-s1.binance.org:8545",
+    "scroll_alpha": "https://scroll-alphanet.public.blastapi.io",
+    "base": "https://base-goerli.public.blastapi.io",
+}
 
 def get_coin_name(chain_id):
     coin_names = {

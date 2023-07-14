@@ -19,7 +19,7 @@ delay = random.randint(1, 15) * 60
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Scroll Alpha job')
 
-web3 = Web3(Web3.HTTPProvider(rpc.provider["scroll_alpha"]))
+web3 = Web3(Web3.HTTPProvider(rpc.test_provider["scroll_alpha"]))
 web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
 wallets_list = w.wallets_with_keys
