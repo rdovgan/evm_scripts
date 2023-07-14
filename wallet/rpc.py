@@ -15,7 +15,7 @@ provider = {
 }
 
 test_provider = {
-    "op_bnb": "https://data-seed-prebsc-1-s1.binance.org:8545",
+    "op_bnb": "https://opbnb-testnet-rpc.bnbchain.org",
     "scroll_alpha": "https://scroll-alphanet.public.blastapi.io",
     "base": "https://base-goerli.public.blastapi.io",
 }

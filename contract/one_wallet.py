@@ -7,9 +7,12 @@ from wallet import rpc
 import contract.contract_service as service
 
 
-web3 = Web3(Web3.HTTPProvider(rpc.provider["arb_nova"]))
+choose_wallet = w.Mars
+choose_chain = "arb_nova"
 
-wallet_data = list(w.load_wallets({w.Mars}).values())[0]
+web3 = Web3(Web3.HTTPProvider(rpc.provider[choose_chain]))
+
+wallet_data = list(w.load_wallets({choose_wallet}).values())[0]
 wallet_address = wallet_data[0]
 private_key = wallet_data[1]
 
