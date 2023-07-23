@@ -18,19 +18,24 @@ load_dotenv()
 supported_chains = ['mainnet', 'optimism', 'arbitrum', 'polygon', 'smart_chain']
 
 contract_dict = {
-    'mm_mainnet_swap': ['0x881D40237659C251811CEC9c364ef91dC08D300C', '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
+    'mm_mainnet_swap': ['0x1a1ec25dc08e98e5e93f1104b5e5cdd298707d31', '0x881D40237659C251811CEC9c364ef91dC08D300C',
+                        '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
     'mm_mainnet_bridge': ['0x82E0b8cDD80Af5930c4452c684E71c861148Ec8A'],
 
-    'mm_optimism_swap': ['0x881D40237659C251811CEC9c364ef91dC08D300C', '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
+    'mm_optimism_swap': ['0x1a1ec25dc08e98e5e93f1104b5e5cdd298707d31', '0x881D40237659C251811CEC9c364ef91dC08D300C',
+                         '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
     'mm_optimism_bridge': ['0x82E0b8cDD80Af5930c4452c684E71c861148Ec8A'],
 
-    'mm_arbitrum_swap': ['0x881D40237659C251811CEC9c364ef91dC08D300C', '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
+    'mm_arbitrum_swap': ['0x1a1ec25dc08e98e5e93f1104b5e5cdd298707d31', '0x881D40237659C251811CEC9c364ef91dC08D300C',
+                         '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
     'mm_arbitrum_bridge': ['0x82E0b8cDD80Af5930c4452c684E71c861148Ec8A'],
 
-    'mm_polygon_swap': ['0x1a1ec25DC08e98e5E93F1104B5e5cdD298707d31', '0x881D40237659C251811CEC9c364ef91dC08D300C'],
+    'mm_polygon_swap': ['0x1a1ec25dc08e98e5e93f1104b5e5cdd298707d31', '0x881D40237659C251811CEC9c364ef91dC08D300C',
+                        '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
     'mm_polygon_bridge': ['0x82E0b8cDD80Af5930c4452c684E71c861148Ec8A'],
 
-    'mm_smart_chain_swap': ['0x881D40237659C251811CEC9c364ef91dC08D300C', '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
+    'mm_smart_chain_swap': ['0x1a1ec25dc08e98e5e93f1104b5e5cdd298707d31', '0x881D40237659C251811CEC9c364ef91dC08D300C',
+                            '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6'],
     'mm_smart_chain_bridge': ['0x82E0b8cDD80Af5930c4452c684E71c861148Ec8A'],
 }
 

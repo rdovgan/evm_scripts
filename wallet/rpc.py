@@ -11,13 +11,14 @@ provider = {
     "avax": "https://avalanche-c-chain.publicnode.com",
     "evmos": "https://evmos-evm.publicnode.com",
     "aurora": "https://mainnet.aurora.dev",
-
+    # "linea": "https://linea-mainnet.infura.io/v3/",
 }
 
 test_provider = {
     "op_bnb": "https://opbnb-testnet-rpc.bnbchain.org",
     "scroll_alpha": "https://scroll-alphanet.public.blastapi.io",
     "base": "https://base-goerli.public.blastapi.io",
+    # "linea_testnet": "https://rpc.goerli.linea.build",
 }
 
 def get_coin_name(chain_id):
