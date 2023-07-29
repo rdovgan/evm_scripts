@@ -32,5 +32,5 @@ def get_balance_for_wallets(wallets):
     print(f"Total balance for all networks: {total_eth}")
 
 
-# get_balance_for_wallets(w.all_wallets)
-get_balance_for_wallets({w.Figa})
+get_balance_for_wallets(w.all_wallets)
+# get_balance_for_wallets({w.Sirius})

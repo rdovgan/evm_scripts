@@ -22,6 +22,7 @@ test_provider = {
     # "linea_testnet": "https://rpc.goerli.linea.build",
 }
 
+
 def get_coin_name(chain_id):
     coin_names = {
         1: "ETH",
@@ -36,5 +37,7 @@ def get_coin_name(chain_id):
         56: "BNB",
         43114: "AVAX",
         9001: "EVMOS",
+        1101: "ETH",
+        51144: "ETH",
     }
     return coin_names.get(chain_id, "Unknown Coin")
