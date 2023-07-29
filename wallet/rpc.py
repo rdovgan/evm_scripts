@@ -11,7 +11,8 @@ provider = {
     "avax": "https://avalanche-c-chain.publicnode.com",
     "evmos": "https://evmos-evm.publicnode.com",
     "aurora": "https://mainnet.aurora.dev",
-    # "linea": "https://linea-mainnet.infura.io/v3/",
+    "zk_evm": "https://zkevm-rpc.com",
+    "linea": "https://rpc.linea.build",
 }
 
 test_provider = {
