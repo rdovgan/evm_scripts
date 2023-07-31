@@ -11,7 +11,6 @@ sys.path.append(parent_dir)
 from db import db_connection as db
 from logger import log
 
-
 default_log_name = 'contract.log'
 
 

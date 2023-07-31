@@ -10,7 +10,6 @@ from wallet import wallets as w
 from wallet import rpc
 from logger import log
 
-
 log_name = 'base.log'
 
 # wait up to 30 minutes
