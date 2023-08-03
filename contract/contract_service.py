@@ -36,7 +36,7 @@ def define_contract(web3, wallet_address, contract_name):
 
 def generate_contract_compilation(contract_name):
     contract_filename = contract_name + ".sol"
-    install_solc('0.8.0')
+    install_solc('0.8.2')
     script_dir = os.path.dirname(os.path.realpath(__file__))
     with open(script_dir + "/solidity/" + contract_filename, "r") as file:
         gold_owner_file = file.read()
@@ -52,7 +52,7 @@ def generate_contract_compilation(contract_name):
                 }
             },
         },
-        solc_version="0.8.0",
+        solc_version="0.8.2",
     )
     return compiled_sol
 
@@ -90,6 +90,22 @@ def call_make_gold(contract_object, web3, wallet_address, private_key, contract_
     else:
         transaction = {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address), "gasPrice": gas_price}
     make_gold = contract_object.functions.makeGold().build_transaction(transaction)
+    # Sign the transaction
+    sign_store_contact = web3.eth.account.sign_transaction(
+        make_gold, private_key=private_key
+    )
+    # Send the transaction
+    send_store_contact = web3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+    transaction_receipt = web3.eth.wait_for_transaction_receipt(send_store_contact)
+    log(log_name, f"Submitted contract method execution {HexBytes.hex(transaction_receipt.transactionHash)}")
+
+
+def store(contract_object, web3, wallet_address, private_key, contract_address, log_name=default_log_name, gas_price=None, storage_value=1):
+    if gas_price is None:
+        transaction = {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address)}
+    else:
+        transaction = {"from": wallet_address, "to": contract_address, "nonce": web3.eth.get_transaction_count(wallet_address), "gasPrice": gas_price}
+    make_gold = contract_object.functions.store(storage_value).build_transaction(transaction)
     # Sign the transaction
     sign_store_contact = web3.eth.account.sign_transaction(
         make_gold, private_key=private_key
