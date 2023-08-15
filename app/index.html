@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Connect Example</title>
+</head>
+<body>
+    <h1>MetaMask Connect Example</h1>
+    <button id="connectButton">Connect to MetaMask</button>
+
+    <script>
+        async function connectToMetaMask() {
+            if (typeof window.ethereum !== 'undefined') {
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                alert('Connected to MetaMask!');
+            } else {
+                alert('MetaMask not found. Please install MetaMask and try again.');
+            }
+        }
+
+        const connectButton = document.getElementById('connectButton');
+        connectButton.addEventListener('click', connectToMetaMask);
+    </script>
+</body>
+</html>
