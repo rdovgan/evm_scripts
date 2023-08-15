@@ -26,7 +26,7 @@ async function callContractMethod() {
         const account = accounts[0];
         console.log('Using account:', account);
 
-        const result = await contract.methods.store(inputValue).call({ from: account });
+        const result = await contract.methods.store(inputValue).call({ from: account }).then(console.log));
         console.log('Method Result:', result);
     } catch (error) {
         console.error('Error:', error);
