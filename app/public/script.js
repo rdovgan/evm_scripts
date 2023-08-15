@@ -3,7 +3,7 @@ let web3;
 
 // Check if MetaMask is installed
 if (typeof window.ethereum !== 'undefined') {
-    web3 = new Web3(window.ethereum);
+    web3 = new Web3('https://base.meowrpc.com');
 } else {
     console.log("MetaMask not found. Please install MetaMask and try again.");
 }
