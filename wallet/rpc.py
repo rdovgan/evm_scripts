@@ -16,6 +16,9 @@ provider = {
 }
 
 test_provider = {
+    "sepolia": "https://rpc2.sepolia.org",
+    "arb_sep": "https://sepolia-rollup.arbitrum.io",
+    "stylus": "https://stylus-testnet.arbitrum.io",
     "op_bnb": "https://opbnb-testnet-rpc.bnbchain.org",
     "scroll_alpha": "https://scroll-alphanet.public.blastapi.io",
     "base": "https://base-goerli.public.blastapi.io",
