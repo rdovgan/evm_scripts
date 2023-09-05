@@ -17,15 +17,15 @@ delay = random.randint(1, 20) * random.randint(5, 30) * random.randint(1, 2)
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Arbitrum Sepolia job')
 
-web3 = Web3(Web3.HTTPProvider(rpc.provider['arb_sep']))
+web3 = Web3(Web3.HTTPProvider(rpc.test_provider['arb_sep']))
 
 if web3.eth.gas_price > 100000000:
     raise "Gas price is too high"
 
-wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Saturn, w.Uranus}
+wallets_list = {w.Figa}
 addresses = list(w.load_wallets(wallets_list).values())
 
-contract_name = "GoldCounter"
+contract_name = "ArbSepCounter"
 
 random_wallet = random.choice(addresses)
 

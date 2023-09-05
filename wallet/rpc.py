@@ -16,11 +16,12 @@ provider = {
 }
 
 test_provider = {
-    "sepolia": "https://rpc2.sepolia.org",
+    "sepolia": "https://endpoints.omniatech.io/v1/eth/sepolia/public",
     "arb_sep": "https://sepolia-rollup.arbitrum.io",
     "stylus": "https://stylus-testnet.arbitrum.io",
     "op_bnb": "https://opbnb-testnet-rpc.bnbchain.org",
     "scroll_alpha": "https://scroll-alphanet.public.blastapi.io",
+    "scroll_sep": "https://1rpc.io/scroll/sepolia",
     "base": "https://base-goerli.public.blastapi.io",
     # "linea_testnet": "https://rpc.goerli.linea.build",
 }
