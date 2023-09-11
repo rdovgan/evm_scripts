@@ -1,6 +1,6 @@
 provider = {
     "mainnet": "https://ethereum.publicnode.com",
-    "arbitrum": "https://arb1.croswap.com/rpc",
+    "arbitrum": "https://1rpc.io/arb",
     "arb_nova": "https://arbitrum-nova.public.blastapi.io",
     "optimism": "https://optimism-mainnet.public.blastapi.io",
     "moonbeam": "https://rpc.api.moonbeam.network",
