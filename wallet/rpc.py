@@ -17,7 +17,7 @@ provider = {
 
 test_provider = {
     "sepolia": "https://endpoints.omniatech.io/v1/eth/sepolia/public",
-    "arb_sep": "https://sepolia-rollup.arbitrum.io",
+    "arb_sep": "https://sepolia-rollup.arbitrum.io/rpc",
     "stylus": "https://stylus-testnet.arbitrum.io",
     "op_bnb": "https://opbnb-testnet-rpc.bnbchain.org",
     "scroll_alpha": "https://scroll-alphanet.public.blastapi.io",
