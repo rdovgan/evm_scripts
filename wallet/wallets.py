@@ -53,6 +53,8 @@ wallets_with_keys = {Banana, Mango, Guava, Ginger, Mercury, Venus, Mars, Jupiter
 
 wallets_main = {Figa, Papaya, Moon, Banana, Mango, Ginger, Guava}
 
+wallets_main_with_keys = {Banana, Mango, Ginger, Guava}
+
 wallets_planets = {Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune}
 
 wallets_ledger = {Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77}
@@ -60,6 +62,8 @@ wallets_ledger = {Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77}
 wallets_game = {MoBox}
 
 wallets_stars = {Sirius, Polaris, Antares, Libra, Aquarius}
+
+not_animals = wallets_main_with_keys | wallets_planets | wallets_game | wallets_stars
 
 wallets_animals = {Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 

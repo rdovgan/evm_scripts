@@ -22,7 +22,7 @@ web3 = Web3(Web3.HTTPProvider(rpc.test_provider['stylus']))
 if web3.eth.gas_price > 100000000:
     raise "Gas price is too high"
 
-wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Saturn, w.Uranus}
+wallets_list = w.not_animals
 addresses = list(w.load_wallets(wallets_list).values())
 
 contract_name = "StylusCounter"
