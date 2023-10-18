@@ -11,7 +11,7 @@ PrivateKey = 'PRIVATE_KEY_'
 key_to_decrypt = db.read_setting('wallet_key')
 
 # List of all wallet abbreviation
-Figa = 'FIGA'
+Fig = 'FIG'
 Ledger_E4 = 'LEDGER_E4'
 Ledger_D9 = 'LEDGER_D9'
 Ledger_8C = 'LEDGER_8C'
@@ -21,7 +21,7 @@ Banana = 'BANANA'
 Mango = 'MANGO'
 Ginger = 'GINGER'
 Guava = 'GUAVA'
-Moon = 'MOON'
+Melon = 'MELON'
 Mercury = 'MERCURY'
 Venus = 'VENUS'
 Mars = 'MARS'
@@ -45,13 +45,13 @@ Crow = 'CROW'
 Rabbit = 'RABBIT'
 Turtle = 'TURTLE'
 
-all_wallets = {Figa, Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77, Papaya, Banana, Mango, Ginger, Guava, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus,
+all_wallets = {Fig, Ledger_E4, Ledger_D9, Ledger_8C, Ledger_77, Papaya, Banana, Mango, Ginger, Guava, Melon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus,
                Neptune, MoBox, Sirius, Polaris, Antares, Libra, Aquarius, Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 
 wallets_with_keys = {Banana, Mango, Guava, Ginger, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Sirius, Polaris, Antares, Libra, Aquarius,
                      Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 
-wallets_main = {Figa, Papaya, Moon, Banana, Mango, Ginger, Guava}
+wallets_main = {Fig, Papaya, Melon, Banana, Mango, Ginger, Guava}
 
 wallets_main_with_keys = {Banana, Mango, Ginger, Guava}
 
