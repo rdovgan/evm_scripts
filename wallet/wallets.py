@@ -63,7 +63,7 @@ wallets_game = {MoBox}
 
 wallets_stars = {Sirius, Polaris, Antares, Libra, Aquarius}
 
-not_animals = wallets_main_with_keys | wallets_planets | wallets_game | wallets_stars
+not_animals = wallets_main_with_keys | wallets_planets | wallets_stars
 
 wallets_animals = {Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 
