@@ -21,7 +21,7 @@ print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started zKatana job')
 
 web3 = Web3(Web3.HTTPProvider(rpc.test_provider["zkatana"]))
 
-wallets_list = w.wallets_with_keys
+wallets_list = w.not_animals
 addresses = list(w.load_wallets(wallets_list).values())
 
 
