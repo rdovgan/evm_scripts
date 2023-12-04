@@ -24,7 +24,7 @@ test_provider = {
     "scroll_sep": "https://1rpc.io/scroll/sepolia",
     "base": "https://base-goerli.public.blastapi.io",
     "zkatana": "https://rpc.zkatana.gelato.digital",
-    # "linea_testnet": "https://rpc.goerli.linea.build",
+    "linea_goerli": "https://rpc.goerli.linea.build",
 }
 
 

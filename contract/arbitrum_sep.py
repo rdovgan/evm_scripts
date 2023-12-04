@@ -12,7 +12,7 @@ from wallet import rpc
 
 log_name = 'arb_sep.log'
 
-# wait from up to 20 minutes
+# wait up to 20 minutes
 delay = random.randint(1, 20) * random.randint(5, 30) * random.randint(1, 2)
 sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Arbitrum Sepolia job')
