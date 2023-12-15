@@ -10,6 +10,7 @@ __pycache__/
 .Python
 build/
 resources/
+db/config.ini
 develop-eggs/
 dist/
 downloads/
@@ -27,6 +28,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+app/node_modules/
+app/package-lock.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -130,3 +133,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Compiled contracts
+contract/result/*.json
