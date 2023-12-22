@@ -25,6 +25,7 @@ test_provider = {
     "base": "https://base-goerli.public.blastapi.io",
     "zkatana": "https://rpc.zkatana.gelato.digital",
     "linea_goerli": "https://rpc.goerli.linea.build",
+    "frame_test": "https://rpc.testnet.frame.xyz/http",
 }
 
 

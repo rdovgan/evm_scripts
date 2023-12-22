@@ -12,20 +12,20 @@ from wallet import rpc
 from logger import log
 
 
-log_name = 'zkatana.log'
+log_name = 'frame_test.log'
 
 # wait up to 15 minutes
 delay = random.randint(1, 15) * 60
-sleep(delay)
-print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started zKatana job')
+# sleep(delay)
+print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Frame Test job')
 
-web3 = Web3(Web3.HTTPProvider(rpc.test_provider["zkatana"]))
+web3 = Web3(Web3.HTTPProvider(rpc.test_provider["frame_test"]))
 
 wallets_list = w.not_animals
 addresses = list(w.load_wallets(wallets_list).values())
 
 
-contract_name = "zKatanaCounter"
+contract_name = "FrameTest"
 
 random_wallet = random.choice(addresses)
 
@@ -42,5 +42,5 @@ contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_a
 times = random.randint(4, 10) + random.randint(0, 10)
 log(log_name, f"Prepare to make {times} transactions")
 for x in range(times):
-    sleep(random.randint(1, 5))
+    # sleep(random.randint(1, 5))
     service.call_make_gold(gold_counter_contract, web3, wallet_address, private_key, contract_address, log_name, web3.eth.gas_price)

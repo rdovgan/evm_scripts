@@ -14,7 +14,7 @@ log_name = 'linea_test.log'
 
 # wait up to 20 minutes
 delay = random.randint(1, 20) * random.randint(5, 30) * random.randint(1, 2)
-# sleep(delay)
+sleep(delay)
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Linea Goerli job')
 
 web3 = Web3(Web3.HTTPProvider(rpc.test_provider['linea_goerli']))
@@ -42,5 +42,5 @@ times = random.randint(0, 4) + random.randint(0, 4)
 
 log(log_name, f"Prepare to make {times} transactions")
 for x in range(times):
-    # sleep(random.randint(2, 7) * random.randint(7, 11) - random.randint(13, 19))
+    sleep(random.randint(2, 7) * random.randint(7, 11) - random.randint(13, 19))
     service.store(gold_counter_contract, web3, wallet_address, private_key, contract_address, log_name, web3.eth.gas_price, random.randint(1, 1000))
