@@ -13,6 +13,7 @@ provider = {
     "aurora": "https://mainnet.aurora.dev",
     "zk_evm": "https://zkevm-rpc.com",
     "linea": "https://rpc.linea.build",
+    "scroll": "https://rpc.scroll.io"
 }
 
 test_provider = {

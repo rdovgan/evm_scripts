@@ -9,7 +9,9 @@ def get_balance_for_wallets(wallets):
     all_wallets = w.load_wallets(wallets)
     total_eth = decimal.Decimal(0.0)
     balance_by_network = {}
-    for network in rpc.provider.keys():
+    networks = ['scroll']
+    # networks = rpc.provider.keys()
+    for network in networks:
         print(f"\nStart scanning {network} network")
         network_balance = decimal.Decimal(0.0)
         web3 = Web3(Web3.HTTPProvider(rpc.provider[network]))
