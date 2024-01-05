@@ -22,7 +22,7 @@ web3 = Web3(Web3.HTTPProvider(rpc.provider['linea']))
 if web3.eth.gas_price > 10000000000:
     raise "Gas price is too high"
 
-wallets_list = {w.Banana, w.Mango, w.Ginger, w.Guava, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.MoBox, w.Sirius, w.Libra, w.Aquarius}
+wallets_list = {w.Banana, w.Mango, w.Ginger, w.Guava, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Saturn, w.Neptune, w.MoBox, w.Sirius, w.Libra, w.Aquarius}
 addresses = list(w.load_wallets(wallets_list).values())
 
 contract_name = "Storage"
