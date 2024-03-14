@@ -1,3 +1,6 @@
+import random
+from time import sleep
+
 from wallet import wallets as w
 from utils import generate_random_email_subject, define_random_words
 
@@ -6,7 +9,10 @@ def send_mail_for_each_wallet(web3, contract, contract_address, chain_name):
     wallets_list = w.get_wallets_by_chain(chain_name)
     addresses = list(w.load_wallets(wallets_list).values())
 
+    sleep(random.randint(1, 1080))  # up to 3 hours
     for current_wallet in addresses:
+        sleep(random.randint(10, 600))  # up to 10 minutes
+
         # Sender's Ethereum account address and private key
         sender_address = current_wallet[0]
         private_key = current_wallet[1]
