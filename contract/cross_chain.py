@@ -9,7 +9,7 @@ def get_balance_for_wallets(wallets):
     all_wallets = w.load_wallets(wallets)
     total_eth = decimal.Decimal(0.0)
     balance_by_network = {}
-    networks = ['scroll']
+    networks = ['arbitrum']
     # networks = rpc.provider.keys()
     for network in networks:
         print(f"\nStart scanning {network} network")

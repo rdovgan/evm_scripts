@@ -1,8 +1,8 @@
 provider = {
     "mainnet": "https://ethereum.publicnode.com",
-    "arbitrum": "https://1rpc.io/arb",
+    "arbitrum": "https://arb-pokt.nodies.app",
     "arb_nova": "https://arbitrum-nova.public.blastapi.io",
-    "optimism": "https://optimism-mainnet.public.blastapi.io",
+    "optimism": "https://optimism-rpc.publicnode.com",
     "moonbeam": "https://rpc.api.moonbeam.network",
     "moonriver": "https://moonriver.public.blastapi.io",
     "zksync": "https://mainnet.era.zksync.io",
