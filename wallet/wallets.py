@@ -68,6 +68,17 @@ not_animals = wallets_main_with_keys | wallets_planets | wallets_stars
 wallets_animals = {Fox, Wolf, Deer, Beaver, Eagle, Sparrow, Crow, Rabbit, Turtle}
 
 
+def get_wallets_by_chain(chain):
+    if chain == 'linea':
+        return wallets_main_with_keys | {Mercury, Venus, Mars, Jupiter, Saturn, Neptune, MoBox, Sirius, Libra, Aquarius}
+    elif chain == 'base':
+        return not_animals | wallets_game
+    elif chain == 'zksync':
+        return not_animals
+    else:
+        return {}
+
+
 def get_wallet_data(wallet_name):
     return os.getenv(Address + wallet_name), os.getenv(PrivateKey + wallet_name)
 
