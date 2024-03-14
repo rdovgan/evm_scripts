@@ -16,6 +16,8 @@ def send_mail_for_each_wallet(web3, contract, contract_address, chain_name):
         tx_receipt = "None"
         if chain_name == 'zksync':
             tx_receipt = send_mail_zksync(web3, contract, contract_address, sender_address, private_key, email, subject)
+        elif chain_name == 'linea':
+            tx_receipt = send_mail_linea(web3, contract, contract_address, sender_address, private_key, email, subject)
         print('Email sent successfully:', tx_receipt)
 
 
@@ -26,3 +28,18 @@ def send_mail_zksync(web3, contract, contract_address, sender_address, private_k
     tx["gas"] = int(web3.eth.estimate_gas(tx))
     signed_tx = web3.eth.account.sign_transaction(tx, private_key=private_key)
     return web3.eth.wait_for_transaction_receipt(web3.eth.send_raw_transaction(signed_tx.rawTransaction))
+
+
+def send_mail_linea(web3, contract, contract_address, sender_address, private_key, email, subject):
+    hex_email = email.encode('utf-8').hex()
+    hex_subject = subject.encode('utf-8').hex()
+
+    tx = {"from": sender_address, "nonce": web3.eth.get_transaction_count(sender_address),
+          'maxPriorityFeePerGas': web3.eth.max_priority_fee,
+          'maxFeePerGas': int(web3.eth.max_priority_fee * 1.1)}
+
+    built_transaction = contract.functions.send_mail(hex_email, hex_subject).build_transaction(tx)
+
+    signed_txn = web3.eth.account.sign_transaction(built_transaction, private_key)
+    tx_hash = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
+    return web3.eth.wait_for_transaction_receipt(tx_hash)
