@@ -1,5 +1,7 @@
 import random
+import json
 from time import sleep
+from web3 import Web3
 
 from utils import generate_random_email_subject, define_random_words
 
@@ -9,9 +11,18 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 
 from wallet import wallets as w
+from wallet import rpc
 
 
-def send_mail_for_each_wallet(web3, contract, contract_address, chain_name):
+def send_mail_for_each_wallet(contract_address, chain_name):
+    web3 = Web3(Web3.HTTPProvider(rpc.provider[chain_name]))
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    with open(script_dir + "/" + 'dmail_abi.json', 'r') as f:
+        contract_abi = json.load(f)
+
+    # Create contract instance
+    contract = web3.eth.contract(address=Web3.to_checksum_address(contract_address), abi=contract_abi)
+
     wallets_list = w.get_wallets_by_chain(chain_name)
     addresses = list(w.load_wallets(wallets_list).values())
 
