@@ -1,8 +1,8 @@
 import random
 from time import sleep
 
-from wallet import wallets as w
 from utils import generate_random_email_subject, define_random_words
+from wallet import wallets as w
 
 
 def send_mail_for_each_wallet(web3, contract, contract_address, chain_name):

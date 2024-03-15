@@ -1,8 +1,8 @@
 from web3 import Web3
 import json
 
-from wallet import rpc
 from service import send_mail_for_each_wallet
+from wallet import rpc
 
 chain_name = 'base'
 
