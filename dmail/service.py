@@ -2,6 +2,12 @@ import random
 from time import sleep
 
 from utils import generate_random_email_subject, define_random_words
+
+import os
+import sys
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+
 from wallet import wallets as w
 
 

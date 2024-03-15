@@ -1,6 +1,11 @@
 from web3 import Web3
 import json
 
+import os
+import sys
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+
 from wallet import rpc
 from service import send_mail_for_each_wallet
 
