@@ -22,7 +22,7 @@ web3 = Web3(Web3.HTTPProvider(rpc.provider['arb_nova']))
 if web3.eth.gas_price > 100000000:
     raise "Gas price is too high"
 
-wallets_list = {w.Banana, w.Mango, w.Guava, w.Ginger, w.Mercury, w.Venus, w.Mars, w.Jupiter, w.Saturn, w.Uranus, w.Libra, w.Aquarius}
+wallets_list = w.not_animals | w.wallets_game
 addresses = list(w.load_wallets(wallets_list).values())
 
 contract_name = "GoldCounter"
@@ -38,7 +38,7 @@ log(log_name, f"The balance of {wallet_address} is: {balance} ETH")
 gold_counter_contract = service.define_contract(web3, wallet_address, contract_name)
 contract_address = service.deploy_contract(gold_counter_contract, web3, wallet_address, private_key, contract_name, log_name)
 
-times = random.randint(0, 4) + random.randint(0, 4)
+times = random.randint(0, 2) + random.randint(0, 2)
 
 log(log_name, f"Prepare to make {times} transactions")
 for x in range(times):
