@@ -1,6 +1,6 @@
 provider = {
     "mainnet": "https://ethereum.publicnode.com",
-    "arbitrum": "https://arb-pokt.nodies.app",
+    "arbitrum": "https://arbitrum.llamarpc.com",
     "arb_nova": "https://arbitrum-nova.public.blastapi.io",
     "optimism": "https://optimism-rpc.publicnode.com",
     "base": "https://base-rpc.publicnode.com",
