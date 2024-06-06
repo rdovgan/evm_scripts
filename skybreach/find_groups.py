@@ -42,6 +42,20 @@ def find_neighbors(lands):
     return groups
 
 
+def find_new_neighbors(existing_lands, new_lands):
+    """Find new lands that are neighbors to existing lands."""
+    adjacency_list = build_adjacency_list(existing_lands + new_lands)
+    new_groups = []
+
+    for new_land in new_lands:
+        for existing_land in existing_lands:
+            if new_land in adjacency_list[existing_land]:
+                new_groups.append(new_land)
+                break
+
+    return new_groups
+
+
 def print_groups(groups):
     """Print groups of connected lands if the group size is greater than 1."""
     for group in groups:
@@ -54,8 +68,13 @@ input_params = [
     (138, 134), (140, 134), (137, 135), (138, 135), (139, 135), (140, 135), (137, 136), (138, 136), (139, 136), (140, 136), (141, 136), (138, 137), (139, 137),
     (140, 137), (139, 138), (143, 133), (144, 138), (145, 138), (145, 139), (126, 186), (125, 186), (160, 72), (161, 72), (160, 73), (161, 73), (148, 34),
     (148, 35), (51, 88), (133, 179), (94, 53), (79, 90), (167, 26), (174, 31), (135, 130), (240, 60), (239, 64), (239, 65), (235, 66), (224, 80), (216, 15),
-    (213, 16), (214, 16), (215, 16), (216, 16), (213, 17), (214, 17), (215, 17), (216, 17), (217, 17)
+    (213, 16), (214, 16), (215, 16), (216, 16), (213, 17), (214, 17), (215, 17), (216, 17), (217, 17), (51, 34), (51, 35), (53, 35), (49, 35), (50, 35),
+    (49, 34), (53, 33), (53, 32), (54, 32), (54, 31), (49, 30), (50, 30), (52, 30), (53, 30), (54, 30), (57, 29)
 ]
-result_groups = find_neighbors(input_params)
+market_lands = [(103, 56)]
 
-print_groups(result_groups)
+result_groups = find_neighbors(input_params)
+# print_groups(result_groups)
+
+new_neighbors = find_new_neighbors(input_params, market_lands)
+print_groups(new_neighbors)
