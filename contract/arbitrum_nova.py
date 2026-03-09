@@ -20,7 +20,7 @@ print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Arbitrum Nova job
 web3 = Web3(Web3.HTTPProvider(rpc.provider['arb_nova']))
 
 if web3.eth.gas_price > 100000000:
-    raise "Gas price is too high"
+    raise Exception("Gas price is too high")
 
 wallets_list = w.not_animals | w.wallets_game
 addresses = list(w.load_wallets(wallets_list).values())

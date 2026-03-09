@@ -103,7 +103,7 @@ def insert_all_land_attribute(records_to_insert):
 
 
 def read_all_land_attribute():
-    read_all("SELECT * FROM land_attribute")
+    return read_all("SELECT * FROM land_attribute")
 
 
 def read_all_land_to_owner_without_offer():
