@@ -4,3 +4,5 @@ hexbytes
 py-solc-x
 web3
 cryptography
+requests
+substrateinterface

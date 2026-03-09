@@ -46,7 +46,7 @@ def insert_record(query: str, record_to_insert):
             connection.close()
 
 
-def read_record(query: str):
+def read_record(query: str, params=None):
     connection = None
     cursor = None
     try:
@@ -54,7 +54,7 @@ def read_record(query: str):
         connection = mysql.connector.connect(**db_configuration)
 
         cursor = connection.cursor()
-        cursor.execute(query)
+        cursor.execute(query, params)
         # get all records
         records = cursor.fetchone()
 
@@ -70,7 +70,10 @@ def read_record(query: str):
 
 # contract_link [owner, contract_type, contract_address]
 def read_contract(owner, contract_type):
-    return read_record(f'SELECT owner, contract_type, contract_address FROM contract_link WHERE owner = "{owner}" AND contract_type = "{contract_type}"')
+    return read_record(
+        'SELECT owner, contract_type, contract_address FROM contract_link WHERE owner = %s AND contract_type = %s',
+        (owner, contract_type)
+    )
 
 
 def insert_contract(record_to_insert):
@@ -80,7 +83,7 @@ def insert_contract(record_to_insert):
 
 
 def read_setting(setting_name):
-    setting = read_record(f'SELECT value FROM setting WHERE name = "{setting_name}"')
+    setting = read_record('SELECT value FROM setting WHERE name = %s', (setting_name,))
     if setting is not None:
         return setting[0]
     return None

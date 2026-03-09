@@ -20,7 +20,7 @@ print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Started Arbitrum Sepolia 
 web3 = Web3(Web3.HTTPProvider(rpc.test_provider['arb_sep']))
 
 if web3.eth.gas_price > 100000000:
-    raise "Gas price is too high"
+    raise Exception("Gas price is too high")
 
 wallets_list = w.not_animals
 addresses = list(w.load_wallets(wallets_list).values())
